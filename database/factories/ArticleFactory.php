@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Article;
+use App\Models\Category;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -21,6 +23,8 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraphs(5, true),
             'published_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
+            'category_id' => Category::inRandomOrder()->first()->id,
+            'author_id' => User::inRandomOrder()->first()->id,
             
         ];
     }
