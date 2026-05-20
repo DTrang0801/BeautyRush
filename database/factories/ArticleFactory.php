@@ -23,8 +23,8 @@ class ArticleFactory extends Factory
             'title' => $this->faker->sentence(),
             'content' => $this->faker->paragraphs(5, true),
             'published_at' => $this->faker->dateTimeBetween('-1 month', 'now'),
-            'category_id' => Category::inRandomOrder()->first()->id,
-            'author_id' => User::inRandomOrder()->first()->id,
+            'category_id' => $this->faker->numberBetween(1, 4),
+            'author_id' => $this->faker->numberBetween(1, 10),
             
         ];
     }
