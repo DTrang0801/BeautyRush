@@ -2,7 +2,17 @@
 
 use Illuminate\Support\Facades\Route;
 
+
+// Public pages
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
+
+
+// Admin pages
+Route::get('/admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
+Route::get('/admin/categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
+Route::post('/admin/categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'store']);
+
+
 
 Route::get('/dashboard', function () {
     return view('userzone.dashboard');
@@ -15,3 +25,4 @@ Route::middleware('auth')->group(function () {
 });
 
 require __DIR__.'/auth.php';
+
