@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/faq', [App\Http\Controllers\FaqController::class, 'index'])->name('faq');
+Route::get('/account', [App\Http\Controllers\AccountController::class, 'index'])->name('account');
 
 
 // Admin pages
