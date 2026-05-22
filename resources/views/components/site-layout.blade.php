@@ -24,8 +24,8 @@
 
     <div class="flex gap-6">
         <a class="hover:font-bold" href="/">Home</a>
-        <a class="hover:font-bold" href="/about">Products</a>
-        <a class="hover:font-bold" href="/about">Tips & Tricks</a>
+        <a class="hover:font-bold" href="/products">Products</a>
+        <a class="hover:font-bold" href="/account">Account</a>
     </div>
 
 </nav>
@@ -39,6 +39,7 @@
 <footer class="mt-4 mb-4 bg-pink-200">
 
     <a class="ml-8 mr-4 hover:font-bold" href="/about">About</a>
+    <a class="mr-4 hover:font-bold" href="/faq">FAQ</a>
     <a class="mr-4 hover:font-bold" href="/contact">Contact</a>
 
 </footer>
