@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Route;
 // Public pages
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
+Route::get('/faq', [App\Http\Controllers\FaqController::class, 'index'])->name('faq');
+
 
 // Admin pages
 Route::prefix('admin')->name('admin.')->group(function(){
