@@ -1,5 +1,5 @@
 <x-site-layout>
 
-    <body>Contact informatie</body>
+    <body>Contact information</body>
 
 </x-site-layout>

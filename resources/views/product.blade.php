@@ -1,5 +1,5 @@
 <x-site-layout>
 
-    <body>My account Trang</body>
+    <body>Products</body>
 
 </x-site-layout>

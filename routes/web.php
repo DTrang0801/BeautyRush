@@ -7,8 +7,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name('welcome');
 
 Route::get('/account', [App\Http\Controllers\AccountController::class, 'index'])->name('account');
-Route::get('/faq', [App\Http\Controllers\FaqController::class, 'index'])->name('faq');
 Route::get('/contact', [App\Http\Controllers\ContactController::class, 'index'])->name('contact');
+Route::get('/faq', [App\Http\Controllers\FaqController::class, 'index'])->name('faq');
+Route::get('/products', [App\Http\Controllers\ProductController::class, 'index'])->name('products');
 
 
 // Admin pages
