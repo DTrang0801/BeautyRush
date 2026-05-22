@@ -8,9 +8,14 @@ Route::get('/', [App\Http\Controllers\WelcomeController::class, 'index'])->name(
 
 
 // Admin pages
-Route::get('/admin/categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
-Route::get('/admin/categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
-Route::post('/admin/categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'store']);
+Route::prefix('admin')->name('admin.')->group(function(){
+
+    Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
+    Route::get('categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');
+    Route::post('categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'store'])->name('categories.store');
+
+});
+
 
 
 
