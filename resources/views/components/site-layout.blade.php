@@ -36,11 +36,10 @@
 </main>
 
 
-<footer class="mt-4 mb-4 bg-pink-200">
+<footer class="mt-4 mb-4 bg-pink-200 flex gap-6">
 
-    <a class="ml-8 mr-4 hover:font-bold" href="/about">About</a>
-    <a class="mr-4 hover:font-bold" href="/faq">FAQ</a>
-    <a class="mr-4 hover:font-bold" href="/contact">Contact</a>
+    <a class="ml-8 mr-4 hover:font-bold" href="/contact">Contact</a>
+    <a class="hover:font-bold" href="/faq">FAQ</a>
 
 </footer>
 
