@@ -4,22 +4,30 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>KIES IETS</title>
+    <title>Beauty Rush</title>
 
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
 
-<body class="">
+<body class="mr-4">
 
-<nav class="mb-4 bg-pink-200">
+<nav class="mb-4 bg-pink-100 flex items-center px-4 py-2">
 
-    <a class="mr-4 ml-8 hover:font-bold" href="/">Home</a>
-    <a class="mr-4 hover:font-bold" href="/about">About</a>
-    <a class="mr-4 hover:font-bold" href="/about">Products</a>
-    <a class="mr-4 hover:font-bold" href="/about">Tips & Tricks</a>
+    <a href="/" class="mr-8">
+        <img
+            src="{{ asset('images/logo.png') }}"
+            alt="BeautyRush logo"
+            class="h-20 w-auto"
+        >
+    </a>
 
-    
+    <div class="flex gap-6">
+        <a class="hover:font-bold" href="/">Home</a>
+        <a class="hover:font-bold" href="/about">Products</a>
+        <a class="hover:font-bold" href="/about">Tips & Tricks</a>
+    </div>
+
 </nav>
 
 
@@ -30,7 +38,7 @@
 
 <footer class="mt-4 mb-4 bg-pink-200">
 
-    <a class="mr-4 ml-8 hover:font-bold" href="/about">About</a>
+    <a class="ml-8 mr-4 hover:font-bold" href="/about">About</a>
     <a class="mr-4 hover:font-bold" href="/contact">Contact</a>
 
 </footer>
