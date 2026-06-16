@@ -1,4 +1,4 @@
-<form action="/admin/categories/create" method="POST">
+<form action="/admin/categories" method="POST">
     @csrf
 
 
