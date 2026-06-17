@@ -1,3 +1,5 @@
+<x-site-layout>
+
 <form action="/admin/categories" method="POST">
     @csrf
 
@@ -10,3 +12,5 @@
 
 
 </form>
+
+</x-site-layout>

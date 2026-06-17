@@ -1,3 +1,4 @@
+<x-site-layout>
 
 <h1>Categories</h1>
 
@@ -12,3 +13,5 @@
 </ul>
 
 <a href="/admin/categories/create">Add category</a>
+
+</x-site-layout>
