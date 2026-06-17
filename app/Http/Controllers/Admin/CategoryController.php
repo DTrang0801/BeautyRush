@@ -31,10 +31,11 @@ class CategoryController extends Controller
 
     function store(Request $request)
     {
-
-        Category::create([
-            'name' => $request->name,
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
         ]);
+
+        Category::create($validated);
 
         return redirect('/admin/categories');
     }
