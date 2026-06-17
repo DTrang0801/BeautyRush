@@ -13,7 +13,7 @@ Route::get('/products', [App\Http\Controllers\ProductController::class, 'index']
 
 
 // Admin pages
-Route::prefix('admin')->name('admin.')->group(function(){
+Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function(){
 
     Route::resource('categories', App\Http\Controllers\admin\CategoryController::class)->except(['show']);
 
