@@ -4,11 +4,11 @@
         <div class="space-y-3">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-500">Your space</p>
             <h1 class="text-4xl font-semibold text-slate-900">Account Settings</h1>
-            <p class="max-w-2xl text-lg leading-8 text-slate-600">Save your favorite discoveries and share your beauty experiences with the community.</p>
+            <p class="text-lg leading-8 text-slate-600 sm:whitespace-nowrap">Save your favorite discoveries and share your beauty experiences with the community.</p>
         </div>
 
         <div class="space-y-8 rounded-3xl border border-rose-100 bg-[#fff8ee] p-8 shadow-sm sm:p-12">
-                <div class="flex flex-col items-start justify-between gap-6 rounded-3xl border border-rose-100 bg-white/60 p-6 sm:flex-row sm:items-center">
+                <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
                     <div class="flex items-center gap-5">
                         <div class="flex h-24 w-24 shrink-0 items-center justify-center overflow-hidden rounded-full bg-rose-100 ring-4 ring-rose-50">
                             <img src="{{ asset('images/logo-transparent.png') }}" alt="Profile photo" class="h-20 w-20 object-contain">
