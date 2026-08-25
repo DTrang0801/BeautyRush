@@ -9,7 +9,9 @@ it('shows the users reviews and beauty tips on the account page', function () {
         ->assertSee('My reviews')
         ->assertSee('Soft Glow Foundation')
         ->assertSee('Beauty tips')
-        ->assertSee('Keep your base fresh');
+        ->assertSee('Keep your base fresh')
+        ->assertSee('Saved tips')
+        ->assertSee('A simple evening routine');
 });
 
 test('example', function () {

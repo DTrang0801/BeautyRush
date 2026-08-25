@@ -4,7 +4,7 @@
         <div class="space-y-3">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-500">Your space</p>
             <h1 class="text-4xl font-semibold text-slate-900">Account Settings</h1>
-            <p class="max-w-2xl text-lg leading-8 text-slate-600">Manage your profile, security, and Beauty Rush experience in one place.</p>
+            <p class="max-w-2xl text-lg leading-8 text-slate-600">Save your favorite discoveries and share your beauty experiences with the community.</p>
         </div>
 
         <div class="space-y-8 rounded-3xl border border-rose-100 bg-[#fff8ee] p-8 shadow-sm sm:p-12">
@@ -29,12 +29,6 @@
                         <a href="{{ route('login') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Log in</a>
                     @endauth
                 </div>
-
-                <div class="rounded-2xl bg-rose-100/60 p-5">
-                    <p class="text-sm font-semibold text-slate-900">Your Beauty Rush space</p>
-                    <p class="mt-2 text-sm leading-6 text-slate-600">Save your favorite discoveries and share your beauty experiences with the community.</p>
-                </div>
-
                 <div class="grid gap-8 lg:grid-cols-2">
                     <div>
                         <div class="flex items-center justify-between gap-4">
@@ -67,6 +61,22 @@
                                 </article>
                             @endforeach
                         </div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between gap-4">
+                        <h2 class="text-2xl font-semibold text-slate-900">Saved tips</h2>
+                        <span class="text-sm text-slate-500">{{ count($savedTips) }} saved</span>
+                    </div>
+                    <div class="mt-4 grid gap-4 md:grid-cols-3">
+                        @foreach ($savedTips as $savedTip)
+                            <article class="rounded-2xl border border-rose-100 bg-[#ead8bd]/40 p-5">
+                                <p class="text-lg text-rose-500">♡</p>
+                                <h3 class="mt-3 font-semibold text-slate-900">{{ $savedTip['title'] }}</h3>
+                                <p class="mt-3 text-sm leading-6 text-slate-600">{{ $savedTip['text'] }}</p>
+                            </article>
+                        @endforeach
                     </div>
                 </div>
         </div>

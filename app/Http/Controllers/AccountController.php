@@ -32,6 +32,21 @@ class AccountController extends Controller
             ],
         ];
 
-        return view('account', compact('reviews', 'tips'));
+        $savedTips = [
+            [
+                'title' => 'A simple evening routine',
+                'text' => 'Remove makeup gently, cleanse your skin, and finish with moisturizer before bed.',
+            ],
+            [
+                'title' => 'Blend concealer naturally',
+                'text' => 'Use a small amount and tap the edges with your ring finger for a seamless finish.',
+            ],
+            [
+                'title' => 'Refresh your makeup bag',
+                'text' => 'Check expiry dates regularly and clean your brushes once a week.',
+            ],
+        ];
+
+        return view('account', compact('reviews', 'tips', 'savedTips'));
     }
 }
