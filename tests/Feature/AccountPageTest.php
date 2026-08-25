@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Tip;
 use App\Models\User;
 
 it('shows the users reviews and beauty tips on the account page', function () {
@@ -12,6 +13,21 @@ it('shows the users reviews and beauty tips on the account page', function () {
         ->assertSee('Keep your base fresh')
         ->assertSee('Saved tips')
         ->assertSee('A simple evening routine');
+});
+
+it('lets an authenticated user add a beauty tip', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->post('/account/tips', [
+            'title' => 'Hydrate before makeup',
+            'content' => 'Apply moisturizer first and let it absorb before starting your makeup.',
+        ])
+        ->assertRedirect(route('account'));
+
+    expect(Tip::where('user_id', $user->id)
+        ->where('title', 'Hydrate before makeup')
+        ->exists())->toBeTrue();
 });
 
 test('example', function () {

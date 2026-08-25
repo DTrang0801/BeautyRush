@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AccountController extends Controller
@@ -47,6 +48,10 @@ class AccountController extends Controller
             ],
         ];
 
-        return view('account', compact('reviews', 'tips', 'savedTips'));
+        $myTips = Auth::check()
+            ? Auth::user()->tips()->latest()->get()
+            : collect();
+
+        return view('account', compact('reviews', 'tips', 'savedTips', 'myTips'));
     }
 }
