@@ -11,7 +11,7 @@
 
         <div class="flex flex-col justify-center px-6 py-10 sm:px-12">
             <div class="mb-8 space-y-2">
-                <h2 class="text-3xl font-semibold text-slate-900">Welcome back</h2>
+                <h2 class="text-3xl font-semibold text-slate-900">Welcome back! Please login to your account.</h2>
                 <p class="text-sm text-slate-500">Sign in to continue your beauty journey.</p>
             </div>
 
