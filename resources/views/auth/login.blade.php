@@ -2,7 +2,12 @@
     <div class="grid min-h-[34rem] md:grid-cols-2">
         <div class="flex flex-col justify-between bg-slate-900 p-8 text-white sm:p-12">
             <div>
-                <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-300">Beauty Rush</p>
+                <div class="flex items-center gap-4">
+                    <a href="{{ route('welcome') }}" class="inline-flex rounded-2xl bg-slate-900 p-3 shadow-lg shadow-black/20">
+                        <img src="{{ asset('images/logo-transparent.png') }}" alt="Beauty Rush" class="h-20 w-auto object-contain">
+                    </a>
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-300">Beauty Rush</p>
+                </div>
                 <h1 class="mt-8 max-w-sm text-4xl font-semibold leading-tight sm:text-5xl">Your beauty routine, beautifully simple.</h1>
                 <p class="mt-6 max-w-sm leading-7 text-slate-300">Discover trusted products, honest reviews, and inspiration made for your everyday glow.</p>
             </div>

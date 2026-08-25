@@ -21,11 +21,13 @@
             <div class="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-slate-200/70 blur-3xl"></div>
 
             <div class="relative mt-6 w-full overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200 sm:max-w-6xl">
-                <div class="flex justify-center border-b border-slate-100 px-6 py-5">
-                    <a href="{{ route('welcome') }}" class="block">
-                        <img src="{{ asset('images/logo.png') }}" alt="Beauty Rush" class="h-20 w-auto object-contain">
-                    </a>
-                </div>
+                @unless (request()->routeIs('login'))
+                    <div class="flex justify-center border-b border-slate-100 px-6 py-5">
+                        <a href="{{ route('welcome') }}" class="block">
+                            <img src="{{ asset('images/logo.png') }}" alt="Beauty Rush" class="h-20 w-auto object-contain">
+                        </a>
+                    </div>
+                @endunless
 
                 {{ $slot }}
             </div>
