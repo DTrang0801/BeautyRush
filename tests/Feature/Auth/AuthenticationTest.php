@@ -5,7 +5,9 @@ use App\Models\User;
 test('login screen can be rendered', function () {
     $response = $this->get('/login');
 
-    $response->assertStatus(200);
+    $response->assertSuccessful()
+        ->assertSee('Welcome back! Please login to your account.')
+        ->assertSee('alt="Beauty Rush"', false);
 });
 
 test('users can authenticate using the login screen', function () {

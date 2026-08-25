@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+        <title>Beauty Rush</title>
 
         <!-- Fonts -->
         <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,14 +16,17 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-gray-100">
-            <div>
-                <a href="/">
-                    <x-breeze.application-logo class="w-20 h-20 fill-current text-gray-500" />
+        <div class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-100 px-6 py-10">
+            <div class="pointer-events-none absolute -left-24 top-16 h-64 w-64 rounded-full bg-amber-100/60 blur-3xl"></div>
+            <div class="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-slate-200/70 blur-3xl"></div>
+
+            <div class="relative">
+                <a href="{{ route('welcome') }}" class="block rounded-3xl bg-white px-6 py-4 shadow-lg shadow-slate-200">
+                    <img src="{{ asset('images/logo.png') }}" alt="Beauty Rush" class="h-20 w-auto object-contain">
                 </a>
             </div>
 
-            <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
+            <div class="relative mt-6 w-full overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200 sm:max-w-6xl">
                 {{ $slot }}
             </div>
         </div>
