@@ -11,6 +11,7 @@ it('shows the users reviews and beauty tips on the account page', function () {
         ->assertSee('Soft Glow Foundation')
         ->assertSee('Beauty tips')
         ->assertSee('Keep your base fresh')
+        ->assertDontSee('My shared tips')
         ->assertSee('Saved tips')
         ->assertSee('A simple evening routine');
 });
@@ -24,6 +25,11 @@ it('lets an authenticated user add a beauty tip', function () {
             'content' => 'Apply moisturizer first and let it absorb before starting your makeup.',
         ])
         ->assertRedirect(route('account'));
+
+    $this->actingAs($user)
+        ->get('/account')
+        ->assertSee('Hydrate before makeup')
+        ->assertSee('3 shared');
 
     expect(Tip::where('user_id', $user->id)
         ->where('title', 'Hydrate before makeup')

@@ -51,10 +51,10 @@
                     <div>
                         <div class="flex items-center justify-between gap-4">
                             <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
-                            <span class="text-sm text-slate-500">{{ count($tips) }} shared</span>
+                            <span class="text-sm text-slate-500">{{ count($communityTips) }} shared</span>
                         </div>
                         <div class="mt-4 space-y-4">
-                            @foreach ($tips as $tip)
+                            @foreach ($communityTips as $tip)
                                 <article class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
                                     <h3 class="font-semibold text-slate-900">{{ $tip['title'] }}</h3>
                                     <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
@@ -87,23 +87,6 @@
                             <button type="submit" class="justify-self-start rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Add tip</button>
                         </form>
                     @endauth
-                </div>
-
-                <div>
-                    <div class="flex items-center justify-between gap-4">
-                        <h2 class="text-2xl font-semibold text-slate-900">My shared tips</h2>
-                        <span class="text-sm text-slate-500">{{ count($myTips) }} shared</span>
-                    </div>
-                    <div class="mt-4 grid gap-4 md:grid-cols-2">
-                        @forelse ($myTips as $myTip)
-                            <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
-                                <h3 class="font-semibold text-slate-900">{{ $myTip->title }}</h3>
-                                <p class="mt-3 text-sm leading-6 text-slate-600">{{ $myTip->content }}</p>
-                            </article>
-                        @empty
-                            <p class="text-sm text-slate-500">Your added tips will appear here.</p>
-                        @endforelse
-                    </div>
                 </div>
 
                 <div>

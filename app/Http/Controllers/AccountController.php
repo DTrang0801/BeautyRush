@@ -51,7 +51,11 @@ class AccountController extends Controller
         $myTips = Auth::check()
             ? Auth::user()->tips()->latest()->get()
             : collect();
+        $communityTips = collect($tips)->concat($myTips->map(fn ($tip) => [
+            'title' => $tip->title,
+            'text' => $tip->content,
+        ]));
 
-        return view('account', compact('reviews', 'tips', 'savedTips', 'myTips'));
+        return view('account', compact('reviews', 'tips', 'savedTips', 'communityTips'));
     }
 }
