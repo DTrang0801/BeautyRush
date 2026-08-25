@@ -10,9 +10,9 @@
 </head>
 
 
-<body class="mr-4">
+<body class="bg-[#fffaf3] text-slate-900">
 
-<nav class="mb-4 flex flex-wrap items-center gap-4 bg-pink-100 px-4 py-2">
+<nav class="flex flex-wrap items-center gap-4 border-b border-rose-100 bg-[#ead8bd] px-4 py-2">
 
     <a href="{{ route('welcome') }}" class="shrink-0">
         <img
@@ -36,12 +36,12 @@
 </nav>
 
 
-<main>
+<main class="bg-[#fffaf3]">
     {{ $slot }}
 </main>
 
 
-<footer class="mt-4 mb-4 bg-pink-200 flex gap-6">
+<footer class="flex gap-6 border-t border-rose-100 bg-rose-100 px-6 py-4 text-sm text-slate-700">
 
     <p>
         &copy; 2026 BeautyRush

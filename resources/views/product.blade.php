@@ -1,9 +1,9 @@
 <x-site-layout>
-    <section class="bg-slate-900 px-6 py-16 text-white sm:px-10">
+    <section class="bg-gradient-to-br from-[#d8b28c] via-[#ead8bd] to-[#f7efe3] px-6 py-16 text-slate-900 sm:px-10">
         <div class="mx-auto max-w-6xl space-y-4">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-300">The full edit</p>
             <h1 class="text-4xl font-semibold sm:text-5xl">Find your beauty essentials</h1>
-            <p class="max-w-2xl text-lg leading-8 text-slate-300">Explore our community-loved products across complexion, cheeks, eyes, lips, skincare, and tools.</p>
+            <p class="max-w-2xl text-lg leading-8 text-slate-700">Explore our community-loved products across complexion, cheeks, eyes, lips, skincare, and tools.</p>
         </div>
     </section>
 
