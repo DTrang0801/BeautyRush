@@ -29,14 +29,21 @@
                         <a href="{{ route('login') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Log in</a>
                     @endauth
                 </div>
-                <div>
+                <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil($communityTips->count() / 3)) }} }">
                         <div class="flex items-center justify-between gap-4">
                             <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
-                            <span class="text-sm text-slate-500">{{ count($communityTips) }} shared</span>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-slate-500">{{ count($communityTips) }} shared</span>
+                                @if ($communityTips->count() > 3)
+                                    <button type="button" x-on:click="page = (page + 1) % totalPages" class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-100 text-rose-600 transition hover:bg-rose-200" aria-label="Show next beauty tips">
+                                        <span>→</span>
+                                    </button>
+                                @endif
+                            </div>
                         </div>
                         <div class="mt-4 space-y-4">
                             @foreach ($communityTips as $tip)
-                                <article class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
+                                <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
                                     <h3 class="font-semibold text-slate-900">{{ $tip['title'] }}</h3>
                                     <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
                                 </article>
@@ -69,14 +76,21 @@
                     @endauth
                 </div>
 
-                <div>
+                <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil(count($savedTips) / 3)) }} }">
                     <div class="flex items-center justify-between gap-4">
                         <h2 class="text-2xl font-semibold text-slate-900">Saved tips</h2>
-                        <span class="text-sm text-slate-500">{{ count($savedTips) }} saved</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-slate-500">{{ count($savedTips) }} saved</span>
+                            @if (count($savedTips) > 3)
+                                <button type="button" x-on:click="page = (page + 1) % totalPages" class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-100 text-rose-600 transition hover:bg-rose-200" aria-label="Show next saved tips">
+                                    <span>→</span>
+                                </button>
+                            @endif
+                        </div>
                     </div>
                     <div class="mt-4 grid gap-4 md:grid-cols-3">
                         @foreach ($savedTips as $savedTip)
-                            <article class="rounded-2xl border border-rose-100 bg-[#ead8bd]/40 p-5">
+                            <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-[#ead8bd]/40 p-5">
                                 <p class="text-lg text-rose-500">♡</p>
                                 <h3 class="mt-3 font-semibold text-slate-900">{{ $savedTip['title'] }}</h3>
                                 <p class="mt-3 text-sm leading-6 text-slate-600">{{ $savedTip['text'] }}</p>
@@ -85,14 +99,21 @@
                     </div>
                 </div>
 
-                <div>
+                <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil(count($reviews) / 3)) }} }">
                     <div class="flex items-center justify-between gap-4">
                         <h2 class="text-2xl font-semibold text-slate-900">My reviews</h2>
-                        <span class="text-sm text-slate-500">{{ count($reviews) }} shared</span>
+                        <div class="flex items-center gap-3">
+                            <span class="text-sm text-slate-500">{{ count($reviews) }} shared</span>
+                            @if (count($reviews) > 3)
+                                <button type="button" x-on:click="page = (page + 1) % totalPages" class="flex h-8 w-8 items-center justify-center rounded-full bg-rose-100 text-rose-600 transition hover:bg-rose-200" aria-label="Show next reviews">
+                                    <span>→</span>
+                                </button>
+                            @endif
+                        </div>
                     </div>
                     <div class="mt-4 grid gap-4 md:grid-cols-2">
                         @foreach ($reviews as $review)
-                            <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
+                            <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-white/60 p-5">
                                 <div class="flex items-center justify-between gap-4">
                                     <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
                                     <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review['rating'] }}</span>
