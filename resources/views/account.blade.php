@@ -34,6 +34,41 @@
                     <p class="text-sm font-semibold text-slate-900">Your Beauty Rush space</p>
                     <p class="mt-2 text-sm leading-6 text-slate-600">Save your favorite discoveries and share your beauty experiences with the community.</p>
                 </div>
+
+                <div class="grid gap-8 lg:grid-cols-2">
+                    <div>
+                        <div class="flex items-center justify-between gap-4">
+                            <h2 class="text-2xl font-semibold text-slate-900">My reviews</h2>
+                            <span class="text-sm text-slate-500">{{ count($reviews) }} shared</span>
+                        </div>
+                        <div class="mt-4 space-y-4">
+                            @foreach ($reviews as $review)
+                                <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
+                                    <div class="flex items-center justify-between gap-4">
+                                        <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
+                                        <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review['rating'] }}</span>
+                                    </div>
+                                    <p class="mt-3 text-sm italic leading-6 text-slate-600">“{{ $review['text'] }}”</p>
+                                </article>
+                            @endforeach
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between gap-4">
+                            <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
+                            <span class="text-sm text-slate-500">{{ count($tips) }} shared</span>
+                        </div>
+                        <div class="mt-4 space-y-4">
+                            @foreach ($tips as $tip)
+                                <article class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
+                                    <h3 class="font-semibold text-slate-900">{{ $tip['title'] }}</h3>
+                                    <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
+                                </article>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
         </div>
     </section>
 
