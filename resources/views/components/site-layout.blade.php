@@ -12,9 +12,9 @@
 
 <body class="mr-4">
 
-<nav class="mb-4 bg-pink-100 flex items-center px-4 py-2">
+<nav class="mb-4 flex flex-wrap items-center gap-4 bg-pink-100 px-4 py-2">
 
-    <a href="/" class="mr-8">
+    <a href="{{ route('welcome') }}" class="shrink-0">
         <img
             src="{{ asset('images/logo.png') }}"
             alt="BeautyRush logo"
@@ -22,15 +22,15 @@
         >
     </a>
 
-    <div class="flex gap-6">
-        <a class="hover:font-bold" href="/">Home</a>
-        <a class="hover:font-bold" href="/products">Products</a>
+    <div class="flex flex-1 flex-wrap items-center gap-x-6 gap-y-2">
+        <a class="hover:font-bold" href="{{ route('welcome') }}">Home</a>
+        <a class="hover:font-bold" href="{{ route('products') }}">Products</a>
         @auth
             <a class="hover:font-bold" href="{{ route('account') }}">Account</a>
         @endauth
-        <a class="ml-8 mr-4 hover:font-bold" href="/contact">Contact</a>
-        <a class="hover:font-bold" href="/faq">FAQ</a>
-        <a class="hover:font-bold" href="/login">Login</a>
+        <a class="hover:font-bold" href="{{ route('contact') }}">Contact</a>
+        <a class="hover:font-bold" href="{{ route('faq') }}">FAQ</a>
+        <a class="ml-auto rounded-full bg-slate-900 px-5 py-2 text-white transition hover:bg-rose-600" href="{{ route('login') }}">Login</a>
     </div>
 
 </nav>
