@@ -16,18 +16,18 @@
         </div>
     </section>
 
-    <section class="mx-auto grid max-w-6xl gap-6 px-6 py-16 sm:px-10 md:grid-cols-2 lg:grid-cols-3">
-        <article class="rounded-3xl border border-rose-100 bg-white p-7 shadow-sm">
-            <p class="text-2xl">✉</p>
-            <h2 class="mt-5 text-xl font-semibold text-slate-900">Email us</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-600">For questions, suggestions or collaborations.</p>
-            <a href="mailto:hello@beautyrush.test" class="mt-5 inline-block font-semibold text-rose-600 hover:text-rose-800">hello@beautyrush.test</a>
+    <section class="mx-auto grid max-w-4xl gap-6 px-6 py-16 sm:px-10 md:grid-cols-2">
+        <article class="flex min-h-64 flex-col rounded-3xl border border-rose-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-100 text-2xl text-rose-600">✉</div>
+            <h2 class="mt-6 text-2xl font-semibold text-slate-900">Email us</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-600">For questions, suggestions or collaborations.</p>
+            <a href="mailto:hello@beautyrush.test" class="mt-auto pt-6 font-semibold text-rose-600 hover:text-rose-800">hello@beautyrush.test</a>
         </article>
-        <article class="rounded-3xl border border-rose-100 bg-white p-7 shadow-sm">
-            <p class="text-2xl">☎</p>
-            <h2 class="mt-5 text-xl font-semibold text-slate-900">Call us</h2>
-            <p class="mt-2 text-sm leading-6 text-slate-600">Monday to Friday, from 09:00 to 17:30.</p>
-            <a href="tel:+32488495920" class="mt-5 inline-block font-semibold text-rose-600 hover:text-rose-800">+32 488 49 59 20</a>
+        <article class="flex min-h-64 flex-col rounded-3xl border border-rose-100 bg-white p-8 shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
+            <div class="flex h-12 w-12 items-center justify-center rounded-2xl bg-rose-100 text-2xl text-rose-600">☎</div>
+            <h2 class="mt-6 text-2xl font-semibold text-slate-900">Call us</h2>
+            <p class="mt-3 text-sm leading-6 text-slate-600">Monday to Friday, from 09:00 to 17:30.</p>
+            <a href="tel:+32488495920" class="mt-auto pt-6 font-semibold text-rose-600 hover:text-rose-800">+32 488 49 59 20</a>
         </article>
     </section>
 </x-site-layout>
