@@ -29,26 +29,7 @@
                         <a href="{{ route('login') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Log in</a>
                     @endauth
                 </div>
-                <div class="grid gap-8 lg:grid-cols-2">
-                    <div>
-                        <div class="flex items-center justify-between gap-4">
-                            <h2 class="text-2xl font-semibold text-slate-900">My reviews</h2>
-                            <span class="text-sm text-slate-500">{{ count($reviews) }} shared</span>
-                        </div>
-                        <div class="mt-4 space-y-4">
-                            @foreach ($reviews as $review)
-                                <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
-                                    <div class="flex items-center justify-between gap-4">
-                                        <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
-                                        <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review['rating'] }}</span>
-                                    </div>
-                                    <p class="mt-3 text-sm italic leading-6 text-slate-600">“{{ $review['text'] }}”</p>
-                                </article>
-                            @endforeach
-                        </div>
-                    </div>
-
-                    <div>
+                <div>
                         <div class="flex items-center justify-between gap-4">
                             <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
                             <span class="text-sm text-slate-500">{{ count($communityTips) }} shared</span>
@@ -61,7 +42,6 @@
                                 </article>
                             @endforeach
                         </div>
-                    </div>
                 </div>
 
                 <div>
@@ -100,6 +80,24 @@
                                 <p class="text-lg text-rose-500">♡</p>
                                 <h3 class="mt-3 font-semibold text-slate-900">{{ $savedTip['title'] }}</h3>
                                 <p class="mt-3 text-sm leading-6 text-slate-600">{{ $savedTip['text'] }}</p>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex items-center justify-between gap-4">
+                        <h2 class="text-2xl font-semibold text-slate-900">My reviews</h2>
+                        <span class="text-sm text-slate-500">{{ count($reviews) }} shared</span>
+                    </div>
+                    <div class="mt-4 grid gap-4 md:grid-cols-2">
+                        @foreach ($reviews as $review)
+                            <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
+                                <div class="flex items-center justify-between gap-4">
+                                    <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
+                                    <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review['rating'] }}</span>
+                                </div>
+                                <p class="mt-3 text-sm italic leading-6 text-slate-600">“{{ $review['text'] }}”</p>
                             </article>
                         @endforeach
                     </div>
