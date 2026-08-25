@@ -24,6 +24,32 @@
         </div>
     </section>
 
+    <section class="border-y border-rose-100 bg-[#ead8bd]/40 px-6 py-14 sm:px-10">
+        <div class="mx-auto max-w-6xl">
+            <div class="max-w-xl">
+                <p class="text-sm font-semibold uppercase tracking-[0.25em] text-rose-500">Why Beauty Rush?</p>
+                <h2 class="mt-2 text-3xl font-semibold text-slate-900">A little more confidence in every choice.</h2>
+            </div>
+            <div class="mt-8 grid gap-5 md:grid-cols-3">
+                <div class="rounded-2xl bg-[#fff8ee] p-6 shadow-sm">
+                    <p class="text-2xl text-rose-400">01</p>
+                    <h3 class="mt-4 text-lg font-semibold text-slate-900">Honest reviews</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-600">Real experiences that help you choose products with confidence.</p>
+                </div>
+                <div class="rounded-2xl bg-[#fff8ee] p-6 shadow-sm">
+                    <p class="text-2xl text-rose-400">02</p>
+                    <h3 class="mt-4 text-lg font-semibold text-slate-900">Fresh inspiration</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-600">Simple ideas, routines, and tips for every kind of beauty lover.</p>
+                </div>
+                <div class="rounded-2xl bg-[#fff8ee] p-6 shadow-sm">
+                    <p class="text-2xl text-rose-400">03</p>
+                    <h3 class="mt-4 text-lg font-semibold text-slate-900">A kind community</h3>
+                    <p class="mt-2 text-sm leading-6 text-slate-600">Share what works for you and discover your next favorite together.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="mx-auto max-w-6xl space-y-8 px-6 py-16 sm:px-10">
         <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>

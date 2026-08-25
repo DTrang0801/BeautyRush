@@ -14,15 +14,15 @@
 
 <nav class="flex flex-wrap items-center gap-4 border-b border-rose-100 bg-[#ead8bd] px-4 py-2">
 
-    <a href="{{ route('welcome') }}" class="shrink-0">
+    <a href="{{ route('welcome') }}" class="inline-flex shrink-0 rounded-2xl bg-white/30 p-2 shadow-sm">
         <img
-            src="{{ asset('images/logo.png') }}"
+            src="{{ asset('images/logo-transparent.png') }}"
             alt="BeautyRush logo"
-            class="h-20 w-auto"
+            class="h-20 w-auto object-contain"
         >
     </a>
 
-    <div class="flex flex-1 flex-wrap items-center gap-x-6 gap-y-2">
+    <div class="flex flex-wrap items-center gap-x-6 gap-y-2 md:ml-auto">
         <a class="hover:font-bold" href="{{ route('welcome') }}">Home</a>
         <a class="hover:font-bold" href="{{ route('products') }}">Products</a>
         @auth
@@ -30,7 +30,7 @@
         @endauth
         <a class="hover:font-bold" href="{{ route('contact') }}">Contact</a>
         <a class="hover:font-bold" href="{{ route('faq') }}">FAQ</a>
-        <a class="ml-auto rounded-full bg-slate-900 px-5 py-2 text-white transition hover:bg-rose-600" href="{{ route('login') }}">Login</a>
+        <a class="rounded-full bg-slate-900 px-5 py-2 text-white transition hover:bg-rose-600" href="{{ route('login') }}">Login</a>
     </div>
 
 </nav>
