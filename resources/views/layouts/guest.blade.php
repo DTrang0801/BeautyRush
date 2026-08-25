@@ -16,11 +16,11 @@
         <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.15.1/dist/cdn.min.js"></script>
     </head>
     <body class="font-sans text-gray-900 antialiased">
-        <div class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-stone-100 px-6 py-10">
+        <div class="relative flex min-h-screen flex-col items-center justify-center overflow-hidden {{ request()->routeIs('login') ? 'bg-gradient-to-br from-[#d8b28c] via-[#ead8bd] to-[#f7efe3] px-6 py-10' : 'bg-stone-100 px-6 py-10' }}">
             <div class="pointer-events-none absolute -left-24 top-16 h-64 w-64 rounded-full bg-amber-100/60 blur-3xl"></div>
             <div class="pointer-events-none absolute -right-24 bottom-10 h-72 w-72 rounded-full bg-slate-200/70 blur-3xl"></div>
 
-            <div class="relative mt-6 w-full overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200 sm:max-w-6xl">
+            <div class="relative w-full {{ request()->routeIs('login') ? 'max-w-6xl' : 'mt-6 overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200 sm:max-w-6xl' }}">
                 @unless (request()->routeIs('login'))
                     <div class="flex justify-center border-b border-slate-100 px-6 py-5">
                         <a href="{{ route('welcome') }}" class="block">

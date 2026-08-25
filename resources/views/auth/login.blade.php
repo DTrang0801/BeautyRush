@@ -1,21 +1,22 @@
 <x-guest-layout>
-    <div class="grid min-h-[34rem] md:grid-cols-2">
-        <div class="flex flex-col justify-between bg-slate-900 p-8 text-white sm:p-12">
+    <div class="grid min-h-[42rem] items-center gap-10 md:grid-cols-2">
+        <div class="flex flex-col justify-between p-8 text-slate-900 sm:p-12">
             <div>
                 <div class="flex items-center gap-4">
-                    <a href="{{ route('welcome') }}" class="inline-flex rounded-2xl bg-slate-900 p-3 shadow-lg shadow-black/20">
-                        <img src="{{ asset('images/logo-transparent.png') }}" alt="Beauty Rush" class="h-20 w-auto object-contain">
+                    <a href="{{ route('welcome') }}" class="inline-flex rounded-2xl bg-white/40 p-3 shadow-lg shadow-rose-900/10">
+                        <img src="{{ asset('images/logo-transparent.png') }}" alt="Beauty Rush" class="h-28 w-auto object-contain">
                     </a>
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-300">Beauty Rush</p>
+                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-950">Beauty Rush</p>
                 </div>
-                <h1 class="mt-8 max-w-sm text-4xl font-semibold leading-tight sm:text-5xl">Your beauty routine, beautifully simple.</h1>
-                <p class="mt-6 max-w-sm leading-7 text-slate-300">Discover trusted products, honest reviews, and inspiration made for your everyday glow.</p>
+                <h1 class="mt-8 max-w-sm text-4xl font-semibold leading-tight text-slate-900 sm:text-5xl">Your beauty routine, beautifully simple.</h1>
+                <p class="mt-6 max-w-sm leading-7 text-slate-800">Discover trusted products, honest reviews, and inspiration made for your everyday glow.</p>
             </div>
-            <p class="mt-12 text-sm text-slate-400">Curated with care for beauty lovers.</p>
+            <p class="mt-12 text-sm text-slate-700">Curated with care for beauty lovers.</p>
         </div>
 
-        <div class="flex flex-col justify-center px-6 py-10 sm:px-12">
+        <div class="flex flex-col justify-center rounded-3xl border border-rose-100 bg-[#fff8ee] px-6 py-10 shadow-xl shadow-slate-400/20 sm:px-12">
             <div class="mb-8 space-y-2">
+                <div class="h-1 w-12 rounded-full bg-rose-200"></div>
                 <h2 class="text-3xl font-semibold text-slate-900">Welcome back! Please login to your account.</h2>
                 <p class="text-sm text-slate-500">Sign in to continue your beauty journey.</p>
             </div>
