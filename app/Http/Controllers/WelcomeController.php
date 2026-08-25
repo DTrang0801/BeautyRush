@@ -39,6 +39,36 @@ class WelcomeController extends Controller
                 'reviewer' => 'Amelia R.',
                 'tone' => 'from-violet-100 to-slate-50',
             ],
+            [
+                'name' => 'Rosewood Lip Tint',
+                'type' => 'Lips',
+                'description' => 'A comfortable, sheer tint that leaves lips soft with a rosy finish.',
+                'price' => '€16.75',
+                'rating' => '4.9/5',
+                'review' => 'The color is subtle but lasts surprisingly long without drying my lips.',
+                'reviewer' => 'Lina K.',
+                'tone' => 'from-red-100 to-orange-50',
+            ],
+            [
+                'name' => 'Cloud Cream Cleanser',
+                'type' => 'Skincare',
+                'description' => 'A gentle daily cleanser that removes makeup while keeping skin comfortable.',
+                'price' => '€24.00',
+                'rating' => '4.8/5',
+                'review' => 'My skin feels clean and calm after every wash. A new bathroom staple.',
+                'reviewer' => 'Emma D.',
+                'tone' => 'from-sky-100 to-cyan-50',
+            ],
+            [
+                'name' => 'Blush & Blend Brush',
+                'type' => 'Tools',
+                'description' => 'A soft, tapered brush designed for seamless blush and bronzer application.',
+                'price' => '€14.50',
+                'rating' => '4.6/5',
+                'review' => 'It blends quickly and feels lovely on the skin. Great quality for the price.',
+                'reviewer' => 'Maya T.',
+                'tone' => 'from-amber-100 to-yellow-50',
+            ],
         ];
 
         return view('welcome', compact('products'));
