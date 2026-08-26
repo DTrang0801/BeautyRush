@@ -8,6 +8,8 @@ it('shows featured products and reviews on the homepage', function () {
     $response->assertSuccessful()
         ->assertSee('Why Beauty Rush?')
         ->assertSee('Honest reviews')
+        ->assertSee('Beauty tips to try')
+        ->assertSee('Keep your base fresh')
         ->assertSee('Products worth talking about')
         ->assertSee('Soft Glow Foundation')
         ->assertSee('Rosewood Lip Tint')

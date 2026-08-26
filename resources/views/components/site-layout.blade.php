@@ -27,6 +27,7 @@
     <div class="flex flex-wrap items-center gap-x-6 gap-y-2 md:ml-auto">
         <a class="hover:font-bold" href="{{ route('welcome') }}">Home</a>
         <a class="hover:font-bold" href="{{ route('products') }}">Products</a>
+        <a class="hover:font-bold" href="{{ route('tips.index') }}">Tips &amp; Tricks</a>
         @auth
             <a class="hover:font-bold" href="{{ route('account') }}">Account</a>
         @endauth

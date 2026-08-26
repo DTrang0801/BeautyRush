@@ -17,6 +17,7 @@ Route::get('/account', [AccountController::class, 'index'])->name('account');
 Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
+Route::get('/tips', [TipController::class, 'index'])->name('tips.index');
 
 // Admin pages
 Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
