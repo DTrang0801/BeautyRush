@@ -19,4 +19,16 @@ class TipController extends Controller
 
         return to_route('account')->with('status', 'Tip added successfully.');
     }
+
+    public function update(StoreTipRequest $request, Tip $tip): RedirectResponse
+    {
+        abort_unless($tip->user_id === Auth::id(), 403);
+
+        $tip->update([
+            'title' => $request->validated('title'),
+            'content' => $request->validated('content'),
+        ]);
+
+        return to_route('account')->with('status', 'Tip updated successfully.');
+    }
 }

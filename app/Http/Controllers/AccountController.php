@@ -22,16 +22,7 @@ class AccountController extends Controller
             ],
         ];
 
-        $tips = [
-            [
-                'title' => 'Keep your base fresh',
-                'text' => 'Apply foundation in thin layers and let each layer settle before adding more.',
-            ],
-            [
-                'title' => 'Make blush last longer',
-                'text' => 'Tap a little cream blush underneath powder blush for a soft, lasting flush.',
-            ],
-        ];
+        $tips = [];
 
         $savedTips = [
             [
@@ -52,6 +43,8 @@ class AccountController extends Controller
             ? Auth::user()->tips()->latest()->get()
             : collect();
         $communityTips = collect($tips)->concat($myTips->map(fn ($tip) => [
+            'id' => $tip->id,
+            'editable' => true,
             'title' => $tip->title,
             'text' => $tip->content,
         ]));
