@@ -76,6 +76,11 @@
                                         <textarea id="edit-tip-content" name="content" rows="4" x-model="editingTip.content" required maxlength="1000" class="mt-2 block w-full rounded-xl border-rose-100 bg-white px-4 py-3 focus:border-rose-400 focus:ring-rose-400"></textarea>
                                     </div>
                                     <div class="flex justify-end gap-3 pt-2">
+                                        <form method="POST" x-bind:action="'/account/tips/' + editingTip.id" onsubmit="return confirm('Delete this beauty tip?')" class="mr-auto">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="rounded-full px-5 py-3 text-sm font-semibold text-red-600 hover:bg-red-50">Delete tip</button>
+                                        </form>
                                         <button type="button" x-on:click="editingTip = null" class="rounded-full px-5 py-3 text-sm font-semibold text-slate-600 hover:bg-rose-100">Cancel</button>
                                         <button type="submit" class="rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-rose-600">Save changes</button>
                                     </div>
@@ -121,13 +126,20 @@
                     </div>
                     <div class="mt-4 grid gap-4 md:grid-cols-2">
                         @foreach ($reviews as $review)
-                            <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-white/60 p-5">
-                                <div class="flex items-center justify-between gap-4">
-                                    <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
-                                    <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review['rating'] }}</span>
-                                </div>
-                                <p class="mt-3 text-sm italic leading-6 text-slate-600">“{{ $review['text'] }}”</p>
-                            </article>
+                                <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-white/60 p-5">
+                                    <div class="flex items-center justify-between gap-4">
+                                        <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
+                                        <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review['rating'] }}</span>
+                                    </div>
+                                    <p class="mt-3 text-sm italic leading-6 text-slate-600">“{{ $review['text'] }}”</p>
+                                    @if ($review['editable'] ?? false)
+                                        <form method="POST" action="{{ route('account.reviews.destroy', ['review' => $review['id']]) }}" class="mt-4 flex justify-end" onsubmit="return confirm('Delete this review?')">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-sm font-semibold text-rose-600 hover:text-rose-800">Delete review</button>
+                                        </form>
+                                    @endif
+                                </article>
                         @endforeach
                     </div>
                 </div>

@@ -57,4 +57,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tip::class);
     }
+
+    public function reviews(): HasMany
+    {
+        return $this->hasMany(Review::class);
+    }
 }

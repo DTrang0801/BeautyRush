@@ -56,4 +56,13 @@ class TipController extends Controller
 
         return to_route('account')->with('status', 'Tip updated successfully.');
     }
+
+    public function destroy(Tip $tip): RedirectResponse
+    {
+        abort_unless($tip->user_id === Auth::id(), 403);
+
+        $tip->delete();
+
+        return to_route('account')->with('status', 'Tip deleted successfully.');
+    }
 }

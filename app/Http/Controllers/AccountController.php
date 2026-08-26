@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
@@ -9,18 +10,15 @@ class AccountController extends Controller
 {
     public function index(): View
     {
-        $reviews = [
-            [
-                'product' => 'Soft Glow Foundation',
-                'rating' => '4.9/5',
-                'text' => 'Feels weightless and still looks fresh at the end of the day.',
-            ],
-            [
-                'product' => 'Petal Pop Blush',
-                'rating' => '4.8/5',
-                'text' => 'The perfect pink for a quick, polished look.',
-            ],
-        ];
+        $reviews = Auth::check()
+            ? Auth::user()->reviews()->latest()->get()->map(fn (Review $review): array => [
+                'id' => $review->id,
+                'editable' => true,
+                'product' => $review->product_name,
+                'rating' => $review->rating.'/5',
+                'text' => $review->content,
+            ])
+            : collect();
 
         $tips = [];
 
