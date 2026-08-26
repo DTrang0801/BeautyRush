@@ -1,47 +1,33 @@
 <x-site-layout>
-
-    <div style="font-family: 'Jost', sans-serif; max-width: 780px; margin: 0 auto; padding: 3rem 2rem;">
-
-        <h1 style="font-family: 'Cormorant Garamond', serif; font-size: 2.5rem; font-weight: 300; color: #3D1F2A; margin-bottom: 2rem;">
-            Frequently asked <em style="font-style: italic; color: #C4796A;">questions</em>
-        </h1>
-
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">Can I buy products on Beauty Rush?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">No, Beauty Rush is not a shop. We are a review and inspiration platform — you can read and write reviews, but purchases happen at the retailer of your choice.</p>
-        </details>
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">How do I write a product review?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">Create a free account, find the product you want to review, and share your honest experience. You can rate the product and leave a written review for the community.</p>
-        </details>
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">How do I share a beauty tip or trick?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">Once you are logged in, you can post your own tips and tricks in your profile or on a product page. Share your routines, techniques, and favourite combinations with the community.</p>
-        </details>
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">Do I need an account to read reviews?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">No, anyone can browse and read reviews without an account. You only need to register if you want to write reviews or share tips yourself.</p>
-        </details>
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">Is Beauty Rush free to use?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">Yes, Beauty Rush is completely free. Create an account, explore products, read reviews, and share your knowledge with the community at no cost.</p>
-        </details>
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">How do I reset my password?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">Click "Log in" and then "Forgot password". Enter your email and we will send you a reset link within a few minutes.</p>
-        </details>
-
-        <details style="border-bottom: 0.5px solid #E8C4B8; padding: 1rem 0;">
-            <summary style="font-size: 1.1rem; color: #3D1F2A; cursor: pointer;">Can I edit or delete my review?</summary>
-            <p style="margin-top: 0.8rem; color: #6B4F57; font-size: 0.9rem; line-height: 1.8;">Yes, you can edit or delete any review you have written by going to your profile page and managing your posts from there.</p>
-        </details>
-
-    </div>
-
+    <section class="bg-gradient-to-br from-[#d8b28c] via-[#ead8bd] to-[#f7efe3] px-6 py-16 sm:px-10">
+        <div class="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row sm:items-end">
+            <div>
+            <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-700">Need a little guidance?</p>
+            <h1 class="mt-3 text-5xl font-semibold text-slate-900">Frequently asked questions</h1>
+            <p class="mt-4 max-w-2xl text-lg leading-8 text-slate-700">Find quick answers about Beauty Rush, reviews, and sharing beauty tips.</p>
+            </div>
+            @auth
+                @if (Auth::user()->is_admin)
+                    <a href="{{ route('admin.faqs.index') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-rose-600">Manage FAQs</a>
+                @endif
+            @endauth
+        </div>
+    </section>
+    <section class="mx-auto max-w-4xl space-y-10 px-6 py-16 sm:px-10">
+        @foreach ($categories as $category)
+            <div>
+                <h2 class="text-2xl font-semibold text-slate-900">{{ $category->name }}</h2>
+                <div class="mt-4 divide-y divide-rose-100 rounded-2xl border border-rose-100 bg-[#fff8ee] px-6">
+                    @forelse ($category->faqs as $faq)
+                        <details class="py-5">
+                            <summary class="cursor-pointer text-lg font-medium text-slate-900">{{ $faq->question }}</summary>
+                            <p class="mt-3 leading-7 text-slate-600">{{ $faq->answer }}</p>
+                        </details>
+                    @empty
+                        <p class="py-5 text-sm text-slate-500">No questions in this category yet.</p>
+                    @endforelse
+                </div>
+            </div>
+        @endforeach
+    </section>
 </x-site-layout>

@@ -47,7 +47,12 @@ class DatabaseSeeder extends Seeder
             ],
         );
 
-        Category::factory(4)->create();
+        $categories = Category::factory(4)->create();
+        $categories->first()->faqs()->createMany([
+            ['question' => 'Can I buy products on Beauty Rush?', 'answer' => 'No, Beauty Rush is a review and inspiration platform. Purchases happen at the retailer of your choice.'],
+            ['question' => 'How do I write a product review?', 'answer' => 'Create an account, open a product, and share your honest experience with the community.'],
+        ]);
+        $categories->get(1)->faqs()->create(['question' => 'Is Beauty Rush free to use?', 'answer' => 'Yes, Beauty Rush is completely free to use.']);
         Article::factory(20)
             ->state(fn (): array => [
                 'category_id' => Category::query()->inRandomOrder()->value('id'),

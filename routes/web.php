@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\FaqController as AdminFaqController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
@@ -29,6 +30,7 @@ Route::post('/tips/favorite', [TipController::class, 'toggleFavorite'])->name('t
 Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::resource('faqs', AdminFaqController::class)->except(['show']);
     Route::resource('users', UserController::class)->only(['index', 'create', 'store', 'update']);
 
     // Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
