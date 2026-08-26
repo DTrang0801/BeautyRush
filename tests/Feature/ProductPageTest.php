@@ -36,3 +36,21 @@ it('lets an authenticated user save a review', function () {
 
     expect(session('favorite_reviews'))->toContain('Soft Glow Foundation|Mila P.');
 });
+
+it('lets an authenticated user write a product review', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->post(route('products.reviews.store'), [
+            'product_name' => 'Soft Glow Foundation',
+            'rating' => 5,
+            'content' => 'A beautiful everyday foundation.',
+        ])
+        ->assertRedirect();
+
+    expect($user->reviews()->where('product_name', 'Soft Glow Foundation')->exists())->toBeTrue();
+
+    $this->get('/products')
+        ->assertSee($user->name)
+        ->assertSee('A beautiful everyday foundation.');
+});

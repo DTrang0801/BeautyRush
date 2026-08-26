@@ -19,6 +19,7 @@ Route::get('/contact', [ContactController::class, 'index'])->name('contact');
 Route::get('/faq', [FaqController::class, 'index'])->name('faq');
 Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::post('/products/reviews/favorite', [ProductController::class, 'toggleFavoriteReview'])->name('products.reviews.favorite');
+Route::post('/products/reviews', [ReviewController::class, 'store'])->name('products.reviews.store');
 Route::get('/tips', [TipController::class, 'index'])->name('tips.index');
 Route::post('/tips/favorite', [TipController::class, 'toggleFavorite'])->name('tips.favorite');
 

@@ -73,6 +73,33 @@
                             </article>
                         </template>
                     </div>
+                    @auth
+                        <form method="POST" action="{{ route('products.reviews.store') }}" class="mt-6 grid gap-4 rounded-2xl border border-rose-100 bg-rose-100/30 p-5">
+                            @csrf
+                            <h4 class="text-lg font-semibold text-slate-900">Write a review</h4>
+                            <input type="hidden" name="product_name" x-bind:value="selectedProduct.name">
+                            <div>
+                                <label for="review-rating" class="text-sm font-medium text-slate-700">Your rating</label>
+                                <select id="review-rating" name="rating" required class="mt-2 block w-full rounded-xl border-rose-100 bg-white px-4 py-3 focus:border-rose-400 focus:ring-rose-400">
+                                    <option value="">Choose a rating</option>
+                                    <option value="5">5 / 5</option>
+                                    <option value="4">4 / 5</option>
+                                    <option value="3">3 / 5</option>
+                                    <option value="2">2 / 5</option>
+                                    <option value="1">1 / 5</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label for="review-content" class="text-sm font-medium text-slate-700">Your review</label>
+                                <textarea id="review-content" name="content" rows="3" required maxlength="1000" placeholder="What do you think about this product?" class="mt-2 block w-full rounded-xl border-rose-100 bg-white px-4 py-3 focus:border-rose-400 focus:ring-rose-400"></textarea>
+                            </div>
+                            <button type="submit" class="justify-self-start rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-rose-600">Publish review</button>
+                        </form>
+                    @else
+                        <p class="mt-6 rounded-2xl bg-rose-100/40 p-5 text-sm text-slate-600">
+                            <a href="{{ route('login') }}" class="font-semibold text-rose-600 hover:text-rose-800">Log in</a> to write a review.
+                        </p>
+                    @endauth
                 </div>
             </div>
         </div>
