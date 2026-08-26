@@ -65,7 +65,16 @@
                         <p class="text-2xl text-rose-400">✦</p>
                         <h3 class="mt-4 text-lg font-semibold text-slate-900">{{ $tip['title'] }}</h3>
                         <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
-                        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip['author'] }}</p>
+                        <div class="mt-5 flex items-center justify-between gap-4">
+                            <p class="text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip['author'] }}</p>
+                            <form method="POST" action="{{ route('tips.favorite') }}">
+                                @csrf
+                                <input type="hidden" name="tip_key" value="{{ $tip['key'] }}">
+                                <button type="submit" class="text-2xl text-rose-500 transition hover:text-rose-700" aria-label="Save tip">
+                                    {{ in_array($tip['key'], $favoriteTips, true) ? '♥' : '♡' }}
+                                </button>
+                            </form>
+                        </div>
                     </article>
                 @endforeach
             </div>
