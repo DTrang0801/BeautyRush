@@ -33,6 +33,7 @@
                     <p class="text-3xl text-rose-400">✦</p>
                     <h2 class="mt-5 text-2xl font-semibold text-slate-900">{{ $tip->title }}</h2>
                     <p class="mt-4 leading-7 text-slate-600">{{ $tip->content }}</p>
+                    <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip->author }}</p>
                 </article>
             @endforeach
         </div>

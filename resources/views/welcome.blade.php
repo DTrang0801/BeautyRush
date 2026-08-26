@@ -57,7 +57,7 @@
                     <p class="text-sm font-semibold uppercase tracking-[0.25em] text-rose-500">From our community</p>
                     <h2 class="mt-2 text-3xl font-semibold text-slate-900">Beauty tips to try</h2>
                 </div>
-                <a href="{{ route('tips.index') }}" class="text-sm font-semibold text-rose-600 hover:text-rose-800">View more tips →</a>
+                <a href="{{ route('tips.index') }}" class="text-sm font-semibold text-rose-600 hover:text-rose-800">Add & view more tips →</a>
             </div>
             <div class="grid gap-5 md:grid-cols-3">
                 @foreach ($tips as $tip)
@@ -65,6 +65,7 @@
                         <p class="text-2xl text-rose-400">✦</p>
                         <h3 class="mt-4 text-lg font-semibold text-slate-900">{{ $tip['title'] }}</h3>
                         <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
+                        <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip['author'] }}</p>
                     </article>
                 @endforeach
             </div>

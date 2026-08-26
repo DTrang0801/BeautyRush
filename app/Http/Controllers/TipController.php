@@ -12,21 +12,34 @@ class TipController extends Controller
 {
     public function index(): View
     {
-        $tips = Tip::latest()->get();
+        $tipsQuery = Tip::with('user')->latest();
+
+        if (Auth::check()) {
+            $tipsQuery->where('user_id', '!=', Auth::id());
+        }
+
+        $tips = $tipsQuery->get()->map(fn (Tip $tip): object => (object) [
+            'title' => $tip->title,
+            'content' => $tip->content,
+            'author' => $tip->user->name,
+        ]);
 
         if ($tips->isEmpty()) {
             $tips = collect([
                 (object) [
                     'title' => 'Keep your base fresh',
                     'content' => 'Apply foundation in thin layers and let each layer settle before adding more.',
+                    'author' => 'Beauty Rush community',
                 ],
                 (object) [
                     'title' => 'Make blush last longer',
                     'content' => 'Tap a little cream blush underneath powder blush for a soft, lasting flush.',
+                    'author' => 'Beauty Rush community',
                 ],
                 (object) [
                     'title' => 'Blend concealer naturally',
                     'content' => 'Use a small amount and tap the edges with your ring finger for a seamless finish.',
+                    'author' => 'Beauty Rush community',
                 ],
             ]);
         }

@@ -43,6 +43,7 @@ class AccountController extends Controller
         $communityTips = collect($tips)->concat($myTips->map(fn ($tip) => [
             'id' => $tip->id,
             'editable' => true,
+            'author' => Auth::user()->name,
             'title' => $tip->title,
             'text' => $tip->content,
         ]));

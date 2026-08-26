@@ -54,6 +54,7 @@
                                         @endif
                                     </div>
                                     <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
+                                    <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip['author'] ?? 'Beauty Rush community' }}</p>
                                 </article>
                             @endforeach
                         </div>
