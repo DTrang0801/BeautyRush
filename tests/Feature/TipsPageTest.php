@@ -46,6 +46,12 @@ it('hides the authenticated users own tips from the community page', function ()
         ->assertDontSee('My private community test tip');
 });
 
+it('asks guests to log in before saving a tip', function () {
+    $this->post(route('tips.favorite'), ['tip_key' => 'featured-keep-your-base-fresh'])
+        ->assertRedirect(route('login'))
+        ->assertSessionHas('status', 'Please log in to save a tip.');
+});
+
 test('example', function () {
     $response = $this->get('/');
 

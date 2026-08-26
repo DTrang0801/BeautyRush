@@ -22,7 +22,7 @@ it('shows the users reviews and beauty tips on the account page', function () {
         ->assertDontSee('Keep your base fresh')
         ->assertDontSee('My shared tips')
         ->assertSee('Saved tips')
-        ->assertSee('A simple evening routine');
+        ->assertSee('Tips you save with the heart will appear here.');
 });
 
 it('lets the review owner delete their review', function () {
@@ -39,6 +39,21 @@ it('lets the review owner delete their review', function () {
         ->assertRedirect(route('account'));
 
     expect(Review::find($review->id))->toBeNull();
+});
+
+it('shows only tips saved by the user', function () {
+    $user = User::factory()->create();
+    $tip = Tip::create([
+        'user_id' => User::factory()->create()->id,
+        'title' => 'Saved community tip',
+        'content' => 'A tip saved from another user.',
+    ]);
+
+    $this->actingAs($user)
+        ->withSession(['favorite_tips' => ['tip-'.$tip->id]])
+        ->get('/account')
+        ->assertSee('Saved community tip')
+        ->assertSee('1 saved');
 });
 
 it('lets an authenticated user add a beauty tip', function () {

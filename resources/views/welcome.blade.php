@@ -72,7 +72,7 @@
         </div>
     </section>
 
-    <section x-data="{ selectedProduct: null }" class="mx-auto max-w-6xl space-y-8 px-6 py-16 sm:px-10">
+    <section x-data="{ selectedProduct: null, favoriteReviews: @js($favoriteReviews) }" class="mx-auto max-w-6xl space-y-8 px-6 py-16 sm:px-10">
         <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
                 <p class="text-sm font-semibold uppercase tracking-[0.25em] text-rose-500">Community favorites</p>
@@ -133,7 +133,14 @@
                             <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
                                 <div class="flex items-center justify-between gap-4">
                                     <p class="font-semibold text-slate-900" x-text="review.reviewer"></p>
-                                    <p class="text-sm font-semibold text-rose-600">★★★★★ <span x-text="review.rating"></span></p>
+                                    <div class="flex items-center gap-3">
+                                        <p class="text-sm font-semibold text-rose-600">★★★★★ <span x-text="review.rating"></span></p>
+                                        <form method="POST" action="{{ route('products.reviews.favorite') }}">
+                                            @csrf
+                                            <input type="hidden" name="review_key" x-bind:value="selectedProduct.name + '|' + review.reviewer">
+                                            <button type="submit" class="text-xl text-rose-500 hover:text-rose-700" x-text="favoriteReviews.includes(selectedProduct.name + '|' + review.reviewer) ? '♥' : '♡'" aria-label="Save review"></button>
+                                        </form>
+                                    </div>
                                 </div>
                                 <p class="mt-3 text-sm italic leading-6 text-slate-600" x-text="`“${review.text}”`"></p>
                             </article>

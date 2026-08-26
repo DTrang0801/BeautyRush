@@ -33,7 +33,16 @@
                     <p class="text-3xl text-rose-400">✦</p>
                     <h2 class="mt-5 text-2xl font-semibold text-slate-900">{{ $tip->title }}</h2>
                     <p class="mt-4 leading-7 text-slate-600">{{ $tip->content }}</p>
-                    <p class="mt-5 text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip->author }}</p>
+                    <div class="mt-5 flex items-center justify-between gap-4">
+                        <p class="text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip->author }}</p>
+                        <form method="POST" action="{{ route('tips.favorite') }}">
+                            @csrf
+                            <input type="hidden" name="tip_key" value="{{ $tip->key }}">
+                            <button type="submit" class="text-2xl text-rose-500 transition hover:text-rose-700" aria-label="{{ in_array($tip->key, $favoriteTips, true) ? 'Remove saved tip' : 'Save tip' }}">
+                                {{ in_array($tip->key, $favoriteTips, true) ? '♥' : '♡' }}
+                            </button>
+                        </form>
+                    </div>
                 </article>
             @endforeach
         </div>

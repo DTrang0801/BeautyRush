@@ -103,13 +103,15 @@
                         </div>
                     </div>
                     <div class="mt-4 grid gap-4 md:grid-cols-3">
-                        @foreach ($savedTips as $savedTip)
+                        @forelse ($savedTips as $savedTip)
                             <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-[#ead8bd]/40 p-5">
                                 <p class="text-lg text-rose-500">♡</p>
                                 <h3 class="mt-3 font-semibold text-slate-900">{{ $savedTip['title'] }}</h3>
                                 <p class="mt-3 text-sm leading-6 text-slate-600">{{ $savedTip['text'] }}</p>
                             </article>
-                        @endforeach
+                        @empty
+                            <p class="text-sm text-slate-500">Tips you save with the heart will appear here.</p>
+                        @endforelse
                     </div>
                 </div>
 

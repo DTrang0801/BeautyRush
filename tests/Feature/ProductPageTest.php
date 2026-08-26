@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\User;
+
 it('shows all products and reviews on the products page', function () {
     $response = $this->get('/products');
 
@@ -13,4 +15,24 @@ it('shows all products and reviews on the products page', function () {
         ->assertSee('View details')
         ->assertSee('Reviews')
         ->assertSee('Mila P.');
+});
+
+it('asks guests to log in before saving a review', function () {
+    $this->post(route('products.reviews.favorite'), [
+        'review_key' => 'Soft Glow Foundation|Mila P.',
+    ])
+        ->assertRedirect(route('login'))
+        ->assertSessionHas('status', 'Please log in to save a review.');
+});
+
+it('lets an authenticated user save a review', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->post(route('products.reviews.favorite'), [
+            'review_key' => 'Soft Glow Foundation|Mila P.',
+        ])
+        ->assertRedirect();
+
+    expect(session('favorite_reviews'))->toContain('Soft Glow Foundation|Mila P.');
 });

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class ProductController extends Controller
@@ -19,6 +22,31 @@ class ProductController extends Controller
             return $product;
         })->all();
 
-        return view('product', ['products' => $products]);
+        return view('product', [
+            'products' => $products,
+            'favoriteReviews' => session('favorite_reviews', []),
+        ]);
+    }
+
+    public function toggleFavoriteReview(Request $request): RedirectResponse
+    {
+        if (! Auth::check()) {
+            return redirect()->guest(route('login'))->with('status', 'Please log in to save a review.');
+        }
+
+        $validated = $request->validate([
+            'review_key' => ['required', 'string', 'max:255'],
+        ]);
+        $favorites = $request->session()->get('favorite_reviews', []);
+
+        if (in_array($validated['review_key'], $favorites, true)) {
+            $favorites = array_values(array_diff($favorites, [$validated['review_key']]));
+        } else {
+            $favorites[] = $validated['review_key'];
+        }
+
+        $request->session()->put('favorite_reviews', $favorites);
+
+        return back();
     }
 }
