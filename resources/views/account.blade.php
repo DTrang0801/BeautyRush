@@ -90,6 +90,24 @@
                         </div>
                     </div>
 
+                <div>
+                    <div class="flex items-center justify-between gap-4">
+                        <h2 class="text-2xl font-semibold text-slate-900">Saved products</h2>
+                        <span class="text-sm text-slate-500">{{ $savedProducts->count() }} saved</span>
+                    </div>
+                    <div class="mt-4 grid gap-4 md:grid-cols-3">
+                        @forelse ($savedProducts as $savedProduct)
+                            <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
+                                <div class="h-24 rounded-xl bg-gradient-to-br {{ $savedProduct['tone'] }}"></div>
+                                <h3 class="mt-4 font-semibold text-slate-900">{{ $savedProduct['name'] }}</h3>
+                                <p class="mt-1 text-sm text-slate-500">{{ $savedProduct['type'] }}</p>
+                            </article>
+                        @empty
+                            <p class="text-sm text-slate-500">Products you save with the heart will appear here.</p>
+                        @endforelse
+                    </div>
+                </div>
+
                 <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil(count($savedTips) / 3)) }} }">
                     <div class="flex items-center justify-between gap-4">
                         <h2 class="text-2xl font-semibold text-slate-900">Saved tips</h2>

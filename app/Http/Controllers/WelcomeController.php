@@ -69,8 +69,8 @@ class WelcomeController extends Controller
         return view('welcome', [
             'products' => $products,
             'tips' => $tips,
-            'favoriteReviews' => session('favorite_reviews', []),
             'favoriteTips' => session('favorite_tips', []),
+            'favoriteProducts' => session('favorite_products', []),
         ]);
     }
 }

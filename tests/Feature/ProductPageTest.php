@@ -17,24 +17,31 @@ it('shows all products and reviews on the products page', function () {
         ->assertSee('Mila P.');
 });
 
-it('asks guests to log in before saving a review', function () {
-    $this->post(route('products.reviews.favorite'), [
-        'review_key' => 'Soft Glow Foundation|Mila P.',
-    ])
+it('asks guests to log in before saving a product', function () {
+    $this->post(route('products.favorite.toggle', ['product' => 'Soft Glow Foundation']))
         ->assertRedirect(route('login'))
-        ->assertSessionHas('status', 'Please log in to save a review.');
+        ->assertSessionHas('status', 'Please log in to save a product.');
 });
 
-it('lets an authenticated user save a review', function () {
+it('lets an authenticated user save a product', function () {
     $user = User::factory()->create();
 
     $this->actingAs($user)
-        ->post(route('products.reviews.favorite'), [
-            'review_key' => 'Soft Glow Foundation|Mila P.',
-        ])
+        ->post(route('products.favorite.toggle', ['product' => 'Soft Glow Foundation']))
         ->assertRedirect();
 
-    expect(session('favorite_reviews'))->toContain('Soft Glow Foundation|Mila P.');
+    expect(session('favorite_products'))->toContain('Soft Glow Foundation');
+});
+
+it('removes a product from favorites when clicked again', function () {
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->withSession(['favorite_products' => ['Soft Glow Foundation']])
+        ->post(route('products.favorite.toggle', ['product' => 'Soft Glow Foundation']))
+        ->assertRedirect();
+
+    expect(session('favorite_products'))->not->toContain('Soft Glow Foundation');
 });
 
 it('lets an authenticated user write a product review', function () {

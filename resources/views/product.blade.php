@@ -7,12 +7,18 @@
         </div>
     </section>
 
-    <main x-data="{ selectedProduct: null, favoriteReviews: @js($favoriteReviews) }" class="mx-auto max-w-6xl px-6 py-16 sm:px-10">
+    <main x-data="{ selectedProduct: null }" class="mx-auto max-w-6xl px-6 py-16 sm:px-10">
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             @foreach ($products as $product)
                 <article class="overflow-hidden rounded-3xl border border-rose-100 bg-white shadow-sm transition hover:-translate-y-1 hover:shadow-lg">
-                    <div class="flex h-48 items-end bg-gradient-to-br {{ $product['tone'] }} p-6">
+                    <div class="flex h-48 items-end justify-between bg-gradient-to-br {{ $product['tone'] }} p-6">
                         <span class="rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-rose-700">{{ $product['type'] }}</span>
+                        <form method="POST" action="{{ route('products.favorite.toggle', ['product' => $product['name']]) }}">
+                            @csrf
+                            <button type="submit" class="text-2xl text-rose-500 hover:text-rose-700" aria-label="{{ in_array($product['name'], $favoriteProducts, true) ? 'Remove saved product' : 'Save product' }}">
+                                {{ in_array($product['name'], $favoriteProducts, true) ? '♥' : '♡' }}
+                            </button>
+                        </form>
                     </div>
                     <div class="space-y-5 p-6">
                         <div class="flex items-start justify-between gap-4">
@@ -60,14 +66,7 @@
                             <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
                                 <div class="flex items-center justify-between gap-4">
                                     <p class="font-semibold text-slate-900" x-text="review.reviewer"></p>
-                                    <div class="flex items-center gap-3">
-                                        <p class="text-sm font-semibold text-rose-600">★★★★★ <span x-text="review.rating"></span></p>
-                                        <form method="POST" action="{{ route('products.reviews.favorite') }}">
-                                            @csrf
-                                            <input type="hidden" name="review_key" x-bind:value="selectedProduct.name + '|' + review.reviewer">
-                                            <button type="submit" class="text-xl text-rose-500 hover:text-rose-700" x-text="favoriteReviews.includes(selectedProduct.name + '|' + review.reviewer) ? '♥' : '♡'" aria-label="Save review"></button>
-                                        </form>
-                                    </div>
+                                    <p class="text-sm font-semibold text-rose-600">★★★★★ <span x-text="review.rating"></span></p>
                                 </div>
                                 <p class="mt-3 text-sm italic leading-6 text-slate-600" x-text="`“${review.text}”`"></p>
                             </article>

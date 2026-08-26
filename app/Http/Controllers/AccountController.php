@@ -40,6 +40,10 @@ class AccountController extends Controller
                 'key' => 'tip-'.$tip->id,
             ])
             ->all();
+        $favoriteProductNames = collect(session('favorite_products', []));
+        $savedProducts = collect(config('products'))
+            ->filter(fn (array $product): bool => $favoriteProductNames->contains($product['name']))
+            ->values();
         $communityTips = collect($tips)->concat($myTips->map(fn ($tip) => [
             'id' => $tip->id,
             'editable' => true,
@@ -48,6 +52,6 @@ class AccountController extends Controller
             'text' => $tip->content,
         ]));
 
-        return view('account', compact('reviews', 'tips', 'savedTips', 'communityTips'));
+        return view('account', compact('reviews', 'tips', 'savedTips', 'savedProducts', 'communityTips'));
     }
 }

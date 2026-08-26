@@ -36,28 +36,26 @@ class ProductController extends Controller
 
         return view('product', [
             'products' => $products,
-            'favoriteReviews' => session('favorite_reviews', []),
+            'favoriteProducts' => session('favorite_products', []),
         ]);
     }
 
-    public function toggleFavoriteReview(Request $request): RedirectResponse
+    public function toggleFavorite(Request $request, string $product): RedirectResponse
     {
         if (! Auth::check()) {
-            return redirect()->guest(route('login'))->with('status', 'Please log in to save a review.');
+            return redirect()->guest(route('login'))->with('status', 'Please log in to save a product.');
         }
 
-        $validated = $request->validate([
-            'review_key' => ['required', 'string', 'max:255'],
-        ]);
-        $favorites = $request->session()->get('favorite_reviews', []);
+        abort_unless(collect(config('products'))->contains('name', $product), 404);
+        $favorites = $request->session()->get('favorite_products', []);
 
-        if (in_array($validated['review_key'], $favorites, true)) {
-            $favorites = array_values(array_diff($favorites, [$validated['review_key']]));
+        if (in_array($product, $favorites, true)) {
+            $favorites = array_values(array_diff($favorites, [$product]));
         } else {
-            $favorites[] = $validated['review_key'];
+            $favorites[] = $product;
         }
 
-        $request->session()->put('favorite_reviews', $favorites);
+        $request->session()->put('favorite_products', $favorites);
 
         return back();
     }
