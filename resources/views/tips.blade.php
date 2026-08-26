@@ -34,7 +34,14 @@
                     <h2 class="mt-5 text-2xl font-semibold text-slate-900">{{ $tip->title }}</h2>
                     <p class="mt-4 leading-7 text-slate-600">{{ $tip->content }}</p>
                     <div class="mt-5 flex items-center justify-between gap-4">
-                        <p class="text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip->author }}</p>
+                        <p class="text-xs font-semibold uppercase tracking-wider text-rose-500">
+                            Shared by
+                            @if ($tip->profile_id)
+                                <a href="{{ route('profile.show', ['user' => $tip->profile_id]) }}" class="hover:text-rose-800 hover:underline">{{ $tip->author }}</a>
+                            @else
+                                {{ $tip->author }}
+                            @endif
+                        </p>
                         <form method="POST" action="{{ route('tips.favorite') }}">
                             @csrf
                             <input type="hidden" name="tip_key" value="{{ $tip->key }}">

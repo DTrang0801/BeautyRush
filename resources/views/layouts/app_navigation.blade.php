@@ -1,12 +1,12 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100" >
+<nav x-data="{ open: false }" class="border-b border-rose-100 bg-[#ead8bd]">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
             <div class="flex">
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
-                    <a href="{{ route('dashboard') }}">
-                        <x-breeze.application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                    <a href="{{ route('welcome') }}">
+                        <img src="{{ asset('images/logo-transparent.png') }}" alt="Beauty Rush" class="block h-12 w-auto object-contain">
                     </a>
                 </div>
 
@@ -15,6 +15,12 @@
                     <x-breeze.nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-breeze.nav-link>
+                    <a href="{{ route('welcome') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Home</a>
+                    <a href="{{ route('products') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Products</a>
+                    <a href="{{ route('tips.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Tips &amp; Tricks</a>
+                    <a href="{{ route('account') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Account</a>
+                    <a href="{{ route('contact') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Contact</a>
+                    <a href="{{ route('faq') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">FAQ</a>
                 </div>
             </div>
 
@@ -70,6 +76,12 @@
             <x-breeze.responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('welcome')">Home</x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('products')">Products</x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('tips.index')">Tips &amp; Tricks</x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('account')">Account</x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('contact')">Contact</x-breeze.responsive-nav-link>
+            <x-breeze.responsive-nav-link :href="route('faq')">FAQ</x-breeze.responsive-nav-link>
         </div>
 
         <!-- Responsive Settings Options -->

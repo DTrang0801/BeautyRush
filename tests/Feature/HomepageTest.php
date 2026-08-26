@@ -10,7 +10,7 @@ it('shows featured products and reviews on the homepage', function () {
         ->assertSee('Honest reviews')
         ->assertSee('Beauty tips to try')
         ->assertSee('Keep your base fresh')
-        ->assertSee('Shared by Beauty Rush community')
+        ->assertSee('Beauty Rush community')
         ->assertSee('View details')
         ->assertSee('Mila P.')
         ->assertSee('Products worth talking about')

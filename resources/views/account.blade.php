@@ -24,7 +24,10 @@
                         </div>
                     </div>
                     @auth
-                        <a href="{{ route('profile.edit') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Edit profile</a>
+                        <div class="flex flex-wrap items-center gap-3">
+                            <a href="{{ route('profile.show', Auth::user()) }}" class="text-sm font-semibold text-rose-600 hover:text-rose-800">View public profile</a>
+                            <a href="{{ route('profile.edit') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Edit profile</a>
+                        </div>
                     @else
                         <a href="{{ route('login') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Log in</a>
                     @endauth
