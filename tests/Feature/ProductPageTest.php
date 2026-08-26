@@ -9,5 +9,8 @@ it('shows all products and reviews on the products page', function () {
         ->assertSee('Rosewood Lip Tint')
         ->assertSee('Cloud Cream Cleanser')
         ->assertSee('Blush & Blend Brush')
-        ->assertSee('Great quality for the price.');
+        ->assertSee('Great quality for the price.')
+        ->assertSee('View details')
+        ->assertSee('Reviews')
+        ->assertSee('Mila P.');
 });
