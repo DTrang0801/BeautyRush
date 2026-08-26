@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Review;
+use App\Models\Tip;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Storage;
@@ -120,4 +122,25 @@ test('a users profile is publicly viewable', function () {
         ->assertSuccessful()
         ->assertSee('beautylover')
         ->assertSee('I love discovering gentle skincare.');
+});
+
+test('a public profile shows the users reviews and tips', function () {
+    $user = User::factory()->create(['username' => 'beautylover']);
+    Review::create([
+        'user_id' => $user->id,
+        'product_name' => 'Petal Pop Blush',
+        'rating' => 4.8,
+        'content' => 'A beautiful soft pink.',
+    ]);
+    Tip::create([
+        'user_id' => $user->id,
+        'title' => 'Blend with a light hand',
+        'content' => 'Start with less product and build slowly.',
+    ]);
+
+    $this->get('/users/'.$user->id)
+        ->assertSee('Petal Pop Blush')
+        ->assertSee('A beautiful soft pink.')
+        ->assertSee('Blend with a light hand')
+        ->assertSee('Start with less product and build slowly.');
 });

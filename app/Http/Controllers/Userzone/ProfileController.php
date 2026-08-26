@@ -26,6 +26,8 @@ class ProfileController extends Controller
 
     public function show(User $user): View
     {
+        $user->load(['reviews', 'tips']);
+
         return view('userzone.profile.show', compact('user'));
     }
 

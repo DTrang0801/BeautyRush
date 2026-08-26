@@ -28,6 +28,37 @@
                         <p class="mt-2 text-slate-600">{{ $user->birthday->format('F j, Y') }}</p>
                     </div>
                 @endif
+                <div class="grid gap-8 border-t border-rose-100 pt-6 lg:grid-cols-2">
+                    <div>
+                        <h2 class="text-2xl font-semibold text-slate-900">Reviews</h2>
+                        <div class="mt-4 space-y-4">
+                            @forelse ($user->reviews as $review)
+                                <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
+                                    <div class="flex items-center justify-between gap-4">
+                                        <h3 class="font-semibold text-slate-900">{{ $review->product_name }}</h3>
+                                        <span class="text-sm font-semibold text-rose-600">★★★★★ {{ $review->rating }}/5</span>
+                                    </div>
+                                    <p class="mt-3 text-sm italic leading-6 text-slate-600">“{{ $review->content }}”</p>
+                                </article>
+                            @empty
+                                <p class="text-sm text-slate-500">This member has not shared a review yet.</p>
+                            @endforelse
+                        </div>
+                    </div>
+                    <div>
+                        <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
+                        <div class="mt-4 space-y-4">
+                            @forelse ($user->tips as $tip)
+                                <article class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
+                                    <h3 class="font-semibold text-slate-900">{{ $tip->title }}</h3>
+                                    <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip->content }}</p>
+                                </article>
+                            @empty
+                                <p class="text-sm text-slate-500">This member has not shared a beauty tip yet.</p>
+                            @endforelse
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>

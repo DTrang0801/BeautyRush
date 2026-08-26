@@ -18,6 +18,23 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {
         $users = User::factory(10)->create();
+        $profileData = [
+            ['username' => 'glowwitharia', 'birthday' => '1998-03-14', 'about' => 'I love soft makeup looks and discovering gentle skincare.'],
+            ['username' => 'beautybyjules', 'birthday' => '1995-07-22', 'about' => 'Always looking for a beautiful everyday blush.'],
+            ['username' => 'skinrituals', 'birthday' => '2000-01-09', 'about' => 'Skincare first, makeup second. Sharing what works for me.'],
+            ['username' => 'theglowguide', 'birthday' => '1997-11-05', 'about' => 'A beauty lover who enjoys simple routines and honest reviews.'],
+            ['username' => 'rosyandready', 'birthday' => '1994-05-18', 'about' => 'Colorful lips, fresh skin, and a little confidence every day.'],
+            ['username' => 'makeupmuse', 'birthday' => '1999-09-27', 'about' => 'Experimenting with new products and sharing my favorite tips.'],
+            ['username' => 'everydayglow', 'birthday' => '1996-02-11', 'about' => 'Keeping beauty routines practical, calm, and fun.'],
+            ['username' => 'blushnotes', 'birthday' => '2001-06-30', 'about' => 'Collecting makeup inspiration and pretty little beauty moments.'],
+            ['username' => 'luminouslee', 'birthday' => '1993-12-03', 'about' => 'A fan of radiant skin and products that make mornings easier.'],
+            ['username' => 'beautyminimal', 'birthday' => '1992-08-16', 'about' => 'Less is more when it comes to my daily beauty routine.'],
+        ];
+
+        $users->values()->each(function (User $user, int $index) use ($profileData): void {
+            $user->update($profileData[$index]);
+        });
+
         Category::factory(4)->create();
         Article::factory(20)
             ->state(fn (): array => [
@@ -45,6 +62,10 @@ class DatabaseSeeder extends Seeder
             ['product_name' => 'Cloud Cream Cleanser', 'rating' => 4.8, 'content' => 'My skin feels clean and calm after every wash.'],
             ['product_name' => 'Blush & Blend Brush', 'rating' => 4.6, 'content' => 'It blends quickly and feels lovely on the skin.'],
             ['product_name' => 'Petal Pop Blush', 'rating' => 4.7, 'content' => 'A beautiful everyday shade with a soft finish.'],
+            ['product_name' => 'Soft Glow Foundation', 'rating' => 4.6, 'content' => 'Easy to build and comfortable enough for all-day wear.'],
+            ['product_name' => 'Velvet Line Mascara', 'rating' => 4.8, 'content' => 'Great definition without making my lashes feel heavy.'],
+            ['product_name' => 'Rosewood Lip Tint', 'rating' => 4.7, 'content' => 'A flattering color that is perfect for everyday looks.'],
+            ['product_name' => 'Cloud Cream Cleanser', 'rating' => 4.9, 'content' => 'Gentle, creamy, and great for my evening routine.'],
         ];
 
         $users->slice(1, count($additionalReviews))->values()->each(function (User $user, int $index) use ($additionalReviews): void {
