@@ -24,6 +24,13 @@ it('shows shared database tips on the tips page', function () {
         ->assertSee('A useful tip for the community.');
 });
 
+it('shows the add tip form to authenticated users', function () {
+    $this->actingAs(User::factory()->create())
+        ->get('/tips')
+        ->assertSee('Add a tip or trick')
+        ->assertSee('Share your beauty tip...');
+});
+
 test('example', function () {
     $response = $this->get('/');
 
