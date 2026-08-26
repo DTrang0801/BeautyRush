@@ -29,5 +29,7 @@ it('shows the account link to authenticated users', function () {
     $this->actingAs(User::factory()->create())
         ->get('/')
         ->assertSuccessful()
-        ->assertSee('>Account</a>', false);
+        ->assertSee('>Account</a>', false)
+        ->assertSee('>Log out</button>', false)
+        ->assertDontSee('>Login</a>', false);
 });

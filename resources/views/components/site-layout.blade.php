@@ -33,7 +33,14 @@
         @endauth
         <a class="hover:font-bold" href="{{ route('contact') }}">Contact</a>
         <a class="hover:font-bold" href="{{ route('faq') }}">FAQ</a>
-        <a class="rounded-full bg-slate-900 px-5 py-2 text-white transition hover:bg-rose-600" href="{{ route('login') }}">Login</a>
+        @guest
+            <a class="rounded-full bg-slate-900 px-5 py-2 text-white transition hover:bg-rose-600" href="{{ route('login') }}">Login</a>
+        @else
+            <form method="POST" action="{{ route('logout') }}">
+                @csrf
+                <button type="submit" class="rounded-full bg-slate-900 px-5 py-2 text-white transition hover:bg-rose-600">Log out</button>
+            </form>
+        @endguest
     </div>
 
 </nav>
