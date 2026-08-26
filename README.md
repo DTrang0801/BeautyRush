@@ -1,89 +1,143 @@
-<p align="center" style="font-size: 24px; margin-bottom: -25px; color: #EF3B2D;">
-    <strong>Educational<br/> Starter Pack<br/></strong><span style="color:gray">for</span>
-</p>
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Beauty Rush
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Beauty Rush is a Laravel web application for discovering beauty products, reading reviews, and sharing beauty tips with a community.
 
+## Features
 
----
+- User registration, login, logout, remember me, and password reset
+- Public user profiles with username, birthday, profile photo, and About me text
+- User-created beauty tips with create, edit, and delete functionality
+- Community Tips & Tricks page
+- Product catalogue with product detail popups and reviews
+- Save products and beauty tips
+- Account page with saved products, saved tips, reviews, and shared tips
+- Admin-only user management
+- Admin-only FAQ management with categories
+- Contact information page
+- Responsive Beauty Rush theme using Blade, Tailwind CSS, and Alpine.js
 
-## About this Starter Pack
-<div style="background-color: #f6f8fa; padding: 10px; border-radius: 5px;">
-This is a starter pack for <strong>Laravel tailored for educational purposes</strong>. 
+## Requirements
 
-It is aimed at helping students and beginners to quickly set up a Laravel development environment that allows for 
-learning the basics without the need to configure everything from scratch.
-</div>
+- PHP 8.4+
+- Composer
+- Node.js and npm
+- SQLite, MySQL, or another supported Laravel database
 
-### Changes from the original Laravel repository
-It provides a pre-configured environment with some opinionated settings and packages for the educational context. 
-Initial customisation was done based on Laravel version 12.x. (12.37.0 on November 9th, 2025).
-Updated to Laravel 13.x (13.7 on May 4th, 2026), including now also Laravel Boost.
+## Installation
 
-- Added **barryvdh/laravel-debugbar** for debug info in the browser
-- Altered **.env.example** for local development (SQLite database, debug mode on, cache and session set to file)
-- Added **roave/security-advisories** to prevent installation of packages with known security issues
-- Added **laravel/boost** for AI assisted code generation
-- Used **laravel/breeze** for authentication scaffolding with Blade templates (but moved all of the component views to a `components.breeze` subfolder for better organization)
-- Replaced vite and related front-end dependencies by **CDN includes of Tailwind CSS and Alpine JS** to keep things simple
-- Replaced PHP Unit by **Pest PHP** for testing, kept basic example tests
-- Some other small tweaks in configuration files, routes, controller, and view organisation to better reflect the educational purpose (rigid structure)
-
-Everything that follows below (and the shields in the header) are part of the original Laravel README.md file.
-
----
-## About Laravel
-
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
-
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
-
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
-
-## Learning Laravel
-
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
-
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+Clone the repository and enter the project directory:
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+git clone <repository-url>
+cd BeautyRush
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Install the dependencies:
 
-## Contributing
+```bash
+composer install
+npm install
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Create the environment file and application key:
 
-## Code of Conduct
+```bash
+cp .env.example .env
+php artisan key:generate
+```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+For SQLite, create or use this database file:
 
-## Security Vulnerabilities
+```text
+database/database.sqlite
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Make sure `.env` contains:
 
-## License
+```env
+DB_CONNECTION=sqlite
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Run the migrations and seed the demo data:
+
+```bash
+php artisan migrate:fresh --seed
+php artisan storage:link
+```
+
+Start the frontend development process if needed:
+
+```bash
+npm run dev
+```
+
+The application is available through Laravel Herd at:
+
+```text
+http://beautyrush.test
+```
+
+## Default Admin Account
+
+The seeder creates this administrator account:
+
+```text
+Username: admin
+Email: admin@ehb.be
+Password: Password!321
+```
+
+Admins can manage users at `/admin/users` and FAQs at `/admin/faqs`.
+
+## Important Routes
+
+| Page | URL |
+| --- | --- |
+| Homepage | `/` |
+| Products | `/products` |
+| Tips & Tricks | `/tips` |
+| FAQ | `/faq` |
+| Contact | `/contact` |
+| Account | `/account` |
+| Login | `/login` |
+| Public profile | `/users/{user}` |
+| Admin users | `/admin/users` |
+| Admin FAQs | `/admin/faqs` |
+
+## Technical Implementation
+
+- **Views:** Blade views, two layouts, reusable Breeze components, and a site layout component
+- **Authentication:** Laravel Breeze authentication scaffolding
+- **Database:** SQLite by default with migrations and seeders
+- **Models:** User, Article, Category, Tip, Review, and FAQ models
+- **Relationships:** Users have many tips and reviews; categories have many articles and FAQs
+- **Validation:** Form Request classes for profile, tip, review, FAQ, and admin user actions
+- **Security:** CSRF protection, escaped Blade output, authentication middleware, and admin middleware
+- **Uploads:** Profile photos are validated as images and stored on the public filesystem disk
+- **Frontend:** Tailwind CSS utilities and Alpine.js for popups and tip pagination
+- **Testing:** Pest feature tests for authentication, profiles, tips, reviews, products, FAQs, and admin access
+
+## Testing
+
+Run the complete test suite with:
+
+```bash
+php artisan test --compact
+```
+
+Format modified PHP files with:
+
+```bash
+vendor/bin/pint --dirty --format agent
+```
+
+## AI Usage
+
+AI was used as a learning and development aid. I used AI to help me understand Laravel course material, clarify errors, think through Laravel concepts, and improve the layout and styling of the application. I reviewed, tested, and adapted the generated suggestions to fit my own project.
+
+## Sources
+
+- [Laravel documentation](https://laravel.com/docs)
+- [Laravel Breeze documentation](https://laravel.com/docs/starter-kits#laravel-breeze)
+- [Tailwind CSS documentation](https://tailwindcss.com/docs)
+- [Alpine.js documentation](https://alpinejs.dev/start-here)
