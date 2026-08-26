@@ -7,6 +7,7 @@ use App\Models\Category;
 use App\Models\User;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -34,6 +35,17 @@ class DatabaseSeeder extends Seeder
         $users->values()->each(function (User $user, int $index) use ($profileData): void {
             $user->update($profileData[$index]);
         });
+
+        User::updateOrCreate(
+            ['email' => 'admin@ehb.be'],
+            [
+                'name' => 'admin',
+                'username' => 'admin',
+                'password' => Hash::make('Password!321'),
+                'email_verified_at' => now(),
+                'is_admin' => true,
+            ],
+        );
 
         Category::factory(4)->create();
         Article::factory(20)

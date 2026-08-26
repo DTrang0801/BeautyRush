@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\admin\CategoryController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FaqController;
 use App\Http\Controllers\ProductController;
@@ -25,9 +26,10 @@ Route::get('/users/{user}', [ProfileController::class, 'show'])->name('profile.s
 Route::post('/tips/favorite', [TipController::class, 'toggleFavorite'])->name('tips.favorite');
 
 // Admin pages
-Route::prefix('admin')->name('admin.')->middleware(['auth'])->group(function () {
+Route::prefix('admin')->name('admin.')->middleware(['auth', 'admin'])->group(function () {
 
     Route::resource('categories', CategoryController::class)->except(['show']);
+    Route::resource('users', UserController::class)->only(['index', 'create', 'store', 'update']);
 
     // Route::get('categories', [App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('categories.index');
     // Route::get('categories/create', [App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('categories.create');

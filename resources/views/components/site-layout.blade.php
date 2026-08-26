@@ -30,6 +30,9 @@
         <a class="hover:font-bold" href="{{ route('tips.index') }}">Tips &amp; Tricks</a>
         @auth
             <a class="hover:font-bold" href="{{ route('account') }}">Account</a>
+            @if (Auth::user()->is_admin)
+                <a class="hover:font-bold" href="{{ route('admin.users.index') }}">Users</a>
+            @endif
         @endauth
         <a class="hover:font-bold" href="{{ route('contact') }}">Contact</a>
         <a class="hover:font-bold" href="{{ route('faq') }}">FAQ</a>

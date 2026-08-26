@@ -15,6 +15,9 @@
                     <x-breeze.nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-breeze.nav-link>
+                    @if (Auth::user()->is_admin)
+                        <a href="{{ route('admin.users.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Users</a>
+                    @endif
                     <a href="{{ route('welcome') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Home</a>
                     <a href="{{ route('products') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Products</a>
                     <a href="{{ route('tips.index') }}" class="inline-flex items-center px-1 pt-1 text-sm font-medium text-slate-600 transition hover:text-rose-600">Tips &amp; Tricks</a>
@@ -76,6 +79,9 @@
             <x-breeze.responsive-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-breeze.responsive-nav-link>
+            @if (Auth::user()->is_admin)
+                <x-breeze.responsive-nav-link :href="route('admin.users.index')">Users</x-breeze.responsive-nav-link>
+            @endif
             <x-breeze.responsive-nav-link :href="route('welcome')">Home</x-breeze.responsive-nav-link>
             <x-breeze.responsive-nav-link :href="route('products')">Products</x-breeze.responsive-nav-link>
             <x-breeze.responsive-nav-link :href="route('tips.index')">Tips &amp; Tricks</x-breeze.responsive-nav-link>
