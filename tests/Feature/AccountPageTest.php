@@ -25,6 +25,20 @@ it('shows the users reviews and beauty tips on the account page', function () {
         ->assertSee('Tips you save with the heart will appear here.');
 });
 
+it('shows the users profile details on the account page', function () {
+    $user = User::factory()->create([
+        'username' => 'beautylover',
+        'birthday' => '1995-04-12',
+        'about' => 'I love discovering gentle skincare.',
+    ]);
+
+    $this->actingAs($user)
+        ->get('/account')
+        ->assertSee('beautylover')
+        ->assertSee('April 12, 1995')
+        ->assertSee('I love discovering gentle skincare.');
+});
+
 it('lets the review owner delete their review', function () {
     $user = User::factory()->create();
     $review = Review::create([

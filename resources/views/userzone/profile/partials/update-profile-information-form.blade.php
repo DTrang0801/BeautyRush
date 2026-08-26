@@ -43,7 +43,7 @@
 
         <div>
             <x-breeze.input-label for="about" :value="__('About me')" />
-            <textarea id="about" name="about" rows="4" maxlength="1000" class="mt-1 block w-full rounded-xl border-slate-200 bg-[#fffaf3] focus:border-beige-800 focus:ring-beige-800">{{ old('about', $user->about) }}</textarea>
+            <textarea id="about" name="about" rows="4" maxlength="1000" class="mt-1 block w-full rounded-xl border-slate-200 bg-[#fffaf3] focus:border-rose-400 focus:ring-rose-400">{{ old('about', $user->about) }}</textarea>
             <x-breeze.input-error class="mt-2" :messages="$errors->get('about')" />
         </div>
 

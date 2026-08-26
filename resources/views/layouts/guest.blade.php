@@ -24,7 +24,7 @@
                 'relative w-full',
                 'max-w-6xl' => request()->routeIs('login'),
                 'mt-6 max-w-3xl overflow-hidden rounded-3xl bg-[#fff8ee] pb-10 shadow-xl shadow-slate-200' => request()->routeIs('password.request'),
-                'mt-6 max-w-2xl overflow-hidden rounded-3xl bg-[#fff8ee] shadow-xl shadow-slate-200' => request()->routeIs('register'),
+                'mt-6 max-w-2xl overflow-hidden rounded-3xl bg-[#fff8ee] pb-10 shadow-xl shadow-slate-200' => request()->routeIs('register'),
                 'mt-6 overflow-hidden rounded-3xl bg-white shadow-xl shadow-slate-200 sm:max-w-6xl' => ! request()->routeIs('login', 'password.request', 'register'),
             ])>
                 @unless (request()->routeIs('login'))

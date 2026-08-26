@@ -15,8 +15,15 @@
                         </div>
                         <div>
                             @auth
-                                <h2 class="text-2xl font-semibold text-slate-900">{{ Auth::user()->name }}</h2>
-                                <p class="mt-1 text-slate-500">{{ Auth::user()->email }}</p>
+                                <h2 class="text-3xl font-semibold text-slate-900">{{ Auth::user()->username ?: Auth::user()->name }}</h2>
+                                <p class="mt-1 text-base text-slate-600">{{ Auth::user()->name }}</p>
+                                <p class="mt-1 text-sm text-slate-500">{{ Auth::user()->email }}</p>
+                                <div class="mt-3 space-y-1 text-sm text-slate-600">
+                                    <p><span class="font-medium text-slate-700">Birthday:</span> {{ Auth::user()->birthday?->format('F j, Y') ?? 'Not added yet' }}</p>
+                                    @if (Auth::user()->about)
+                                        <p><span class="font-medium text-slate-700">About me:</span> {{ Auth::user()->about }}</p>
+                                    @endif
+                                </div>
                             @else
                                 <h2 class="text-2xl font-semibold text-slate-900">Your profile</h2>
                                 <p class="mt-1 text-slate-500">Log in to see your account details.</p>
@@ -48,7 +55,7 @@
                             </div>
                         </div>
                         <div class="mt-4 space-y-4">
-                            @foreach ($communityTips as $tip)
+                            @forelse ($communityTips as $tip)
                                 <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
                                     <div class="flex items-start justify-between gap-4">
                                         <h3 class="font-semibold text-slate-900">{{ $tip['title'] }}</h3>
@@ -59,7 +66,9 @@
                                     <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
                                     <p class="mt-4 text-xs font-semibold uppercase tracking-wider text-rose-500">Shared by {{ $tip['author'] ?? 'Beauty Rush community' }}</p>
                                 </article>
-                            @endforeach
+                            @empty
+                                <div class="rounded-2xl border border-dashed border-rose-200 bg-rose-100/20 p-6 text-sm text-slate-600">No beauty tips shared yet. Add your first tip below.</div>
+                            @endforelse
                         </div>
 
                         <div x-show="editingTip" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 px-6 py-8" x-on:click.self="editingTip = null">
@@ -149,7 +158,7 @@
                         </div>
                     </div>
                     <div class="mt-4 grid gap-4 md:grid-cols-2">
-                        @foreach ($reviews as $review)
+                        @forelse ($reviews as $review)
                                 <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-white/60 p-5">
                                     <div class="flex items-center justify-between gap-4">
                                         <h3 class="font-semibold text-slate-900">{{ $review['product'] }}</h3>
@@ -163,8 +172,10 @@
                                             <button type="submit" class="text-sm font-semibold text-rose-600 hover:text-rose-800">Delete review</button>
                                         </form>
                                     @endif
-                                </article>
-                        @endforeach
+                            </article>
+                        @empty
+                            <div class="rounded-2xl border border-dashed border-rose-200 bg-rose-100/20 p-6 text-sm text-slate-600">Your product reviews will appear here.</div>
+                        @endforelse
                     </div>
                 </div>
         </div>
