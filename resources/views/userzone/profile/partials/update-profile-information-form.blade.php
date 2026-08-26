@@ -13,14 +13,38 @@
         @csrf
     </form>
 
-    <form method="post" action="{{ route('profile.update') }}" class="mt-6 space-y-6">
+    <form method="post" action="{{ route('profile.update') }}" enctype="multipart/form-data" class="mt-6 space-y-6">
         @csrf
         @method('patch')
+
+        <div>
+            <x-breeze.input-label for="username" :value="__('Username')" />
+            <x-breeze.text-input id="username" name="username" type="text" class="mt-1 block w-full" :value="old('username', $user->username)" autocomplete="nickname" />
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('username')" />
+        </div>
 
         <div>
             <x-breeze.input-label for="name" :value="__('Name')" />
             <x-breeze.text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)" required autofocus autocomplete="name" />
             <x-breeze.input-error class="mt-2" :messages="$errors->get('name')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="birthday" :value="__('Birthday')" />
+            <x-breeze.text-input id="birthday" name="birthday" type="date" class="mt-1 block w-full" :value="old('birthday', optional($user->birthday)->format('Y-m-d'))" />
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('birthday')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="profile_photo" :value="__('Profile photo')" />
+            <input id="profile_photo" name="profile_photo" type="file" accept="image/*" class="mt-1 block w-full text-sm text-slate-600">
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('profile_photo')" />
+        </div>
+
+        <div>
+            <x-breeze.input-label for="about" :value="__('About me')" />
+            <textarea id="about" name="about" rows="4" maxlength="1000" class="mt-1 block w-full rounded-xl border-slate-200 bg-[#fffaf3] focus:border-beige-800 focus:ring-beige-800">{{ old('about', $user->about) }}</textarea>
+            <x-breeze.input-error class="mt-2" :messages="$errors->get('about')" />
         </div>
 
         <div>

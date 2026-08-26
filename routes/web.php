@@ -21,6 +21,7 @@ Route::get('/products', [ProductController::class, 'index'])->name('products');
 Route::post('/products/{product}/favorite', [ProductController::class, 'toggleFavorite'])->name('products.favorite.toggle');
 Route::post('/products/reviews', [ReviewController::class, 'store'])->name('products.reviews.store');
 Route::get('/tips', [TipController::class, 'index'])->name('tips.index');
+Route::get('/users/{user}', [ProfileController::class, 'show'])->name('profile.show');
 Route::post('/tips/favorite', [TipController::class, 'toggleFavorite'])->name('tips.favorite');
 
 // Admin pages

@@ -1,6 +1,8 @@
 <?php
 
 use App\Models\User;
+use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 test('profile page is displayed', function () {
     $user = User::factory()->create();
@@ -82,4 +84,40 @@ test('correct password must be provided to delete account', function () {
         ->assertRedirect('/profile');
 
     $this->assertNotNull($user->fresh());
+});
+
+test('users can update their public profile fields and photo', function () {
+    Storage::fake('public');
+    $user = User::factory()->create();
+
+    $this->actingAs($user)
+        ->patch('/profile', [
+            'name' => 'Test User',
+            'username' => 'beautylover',
+            'email' => $user->email,
+            'birthday' => '1995-04-12',
+            'about' => 'I love discovering gentle skincare.',
+            'profile_photo' => UploadedFile::fake()->image('profile.jpg'),
+        ])
+        ->assertSessionHasNoErrors()
+        ->assertRedirect('/profile');
+
+    $user->refresh();
+
+    expect($user->username)->toBe('beautylover')
+        ->and($user->birthday->format('Y-m-d'))->toBe('1995-04-12')
+        ->and($user->about)->toBe('I love discovering gentle skincare.')
+        ->and($user->profile_photo_path)->not->toBeNull();
+});
+
+test('a users profile is publicly viewable', function () {
+    $user = User::factory()->create([
+        'username' => 'beautylover',
+        'about' => 'I love discovering gentle skincare.',
+    ]);
+
+    $this->get('/users/'.$user->id)
+        ->assertSuccessful()
+        ->assertSee('beautylover')
+        ->assertSee('I love discovering gentle skincare.');
 });
