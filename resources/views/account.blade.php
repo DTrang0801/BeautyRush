@@ -31,7 +31,7 @@
                 </div>
                 <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil($communityTips->count() / 3)) }}, editingTip: null }">
                         <div class="flex items-center justify-between gap-4">
-                            <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
+                            <h2 class="text-2xl font-semibold text-slate-900">Your beauty tips</h2>
                             <div class="flex items-center gap-3">
                                 <span class="text-sm text-slate-500">{{ count($communityTips) }} shared</span>
                                 @if ($communityTips->count() > 3)
@@ -83,31 +83,6 @@
                             </div>
                         </div>
                     </div>
-
-                <div>
-                    @auth
-                        <div class="flex items-center justify-between gap-4">
-                            <h2 class="text-2xl font-semibold text-slate-900">Add a beauty tip</h2>
-                            @if (session('status'))
-                                <span class="text-sm font-medium text-rose-600">{{ session('status') }}</span>
-                            @endif
-                        </div>
-                        <form method="POST" action="{{ route('account.tips.store') }}" class="mt-4 grid gap-4 rounded-2xl border border-rose-100 bg-rose-100/30 p-5">
-                            @csrf
-                            <div>
-                                <label for="tip-title" class="text-sm font-medium text-slate-700">Title</label>
-                                <input id="tip-title" name="title" type="text" value="{{ old('title') }}" required maxlength="120" class="mt-2 block w-full rounded-xl border-rose-100 bg-[#fff8ee] px-4 py-3 focus:border-rose-400 focus:ring-rose-400">
-                                @error('title')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                            <div>
-                                <label for="tip-content" class="text-sm font-medium text-slate-700">Your tip</label>
-                                <textarea id="tip-content" name="content" rows="3" required maxlength="1000" class="mt-2 block w-full rounded-xl border-rose-100 bg-[#fff8ee] px-4 py-3 focus:border-rose-400 focus:ring-rose-400">{{ old('content') }}</textarea>
-                                @error('content')<p class="mt-1 text-sm text-red-600">{{ $message }}</p>@enderror
-                            </div>
-                            <button type="submit" class="justify-self-start rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Add tip</button>
-                        </form>
-                    @endauth
-                </div>
 
                 <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil(count($savedTips) / 3)) }} }">
                     <div class="flex items-center justify-between gap-4">
