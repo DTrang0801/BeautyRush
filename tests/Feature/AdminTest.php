@@ -76,11 +76,13 @@ it('shows the FAQ management link only to admins', function () {
 
     $this->actingAs($admin)
         ->get('/faq')
-        ->assertSee('Manage FAQs');
+        ->assertSee('Manage FAQs')
+        ->assertSee('Add category');
 
     $this->actingAs(User::factory()->create())
         ->get('/faq')
-        ->assertDontSee('Manage FAQs');
+        ->assertDontSee('Manage FAQs')
+        ->assertDontSee('Add category');
 });
 
 test('example', function () {

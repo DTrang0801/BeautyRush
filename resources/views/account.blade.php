@@ -1,5 +1,6 @@
 <x-site-layout>
 
+<!--blok1-->
     <section class="mx-auto max-w-5xl px-6 py-16 sm:px-10">
         <div class="space-y-3">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-500">Your space</p>
@@ -7,6 +8,7 @@
             <p class="text-lg leading-8 text-slate-600 sm:whitespace-nowrap">Save your favorite discoveries and share your beauty experiences with the community.</p>
         </div>
 
+<!--profile details-->
         <div class="space-y-8 rounded-3xl border border-rose-100 bg-[#fff8ee] p-8 shadow-sm sm:p-12">
                 <div class="flex flex-col items-start justify-between gap-6 sm:flex-row sm:items-center">
                     <div class="flex items-center gap-5">
@@ -30,6 +32,7 @@
                             @endauth
                         </div>
                     </div>
+                
                     @auth
                         <div class="flex flex-wrap items-center gap-3">
                             <a href="{{ route('profile.show', Auth::user()) }}" class="text-sm font-semibold text-rose-600 hover:text-rose-800">View public profile</a>
@@ -39,6 +42,8 @@
                         <a href="{{ route('login') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-rose-600">Log in</a>
                     @endauth
                 </div>
+
+<!--your beauty tips-->
                 <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil($communityTips->count() / 3)) }}, editingTip: null }">
                         <div class="flex items-center justify-between gap-4">
                             <h2 class="text-2xl font-semibold text-slate-900">Your beauty tips</h2>
@@ -54,6 +59,7 @@
                                 @endif
                             </div>
                         </div>
+
                         <div class="mt-4 space-y-4">
                             @forelse ($communityTips as $tip)
                                 <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-rose-100/40 p-5">
@@ -71,6 +77,7 @@
                             @endforelse
                         </div>
 
+<!--edit beauty tip-->
                         <div x-show="editingTip" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 px-6 py-8" x-on:click.self="editingTip = null">
                             <div class="w-full max-w-lg rounded-3xl bg-[#fff8ee] p-6 shadow-2xl sm:p-8">
                                 <div class="flex items-center justify-between gap-4">
@@ -102,11 +109,13 @@
                         </div>
                     </div>
 
+<!--saved products-->
                 <div>
                     <div class="flex items-center justify-between gap-4">
                         <h2 class="text-2xl font-semibold text-slate-900">Saved products</h2>
                         <span class="text-sm text-slate-500">{{ $savedProducts->count() }} saved</span>
                     </div>
+
                     <div class="mt-4 grid gap-4 md:grid-cols-3">
                         @forelse ($savedProducts as $savedProduct)
                             <article class="rounded-2xl border border-rose-100 bg-white/60 p-5">
@@ -120,6 +129,7 @@
                     </div>
                 </div>
 
+<!--saved tips-->
                 <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil(count($savedTips) / 3)) }} }">
                     <div class="flex items-center justify-between gap-4">
                         <h2 class="text-2xl font-semibold text-slate-900">Saved tips</h2>
@@ -132,6 +142,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="mt-4 grid gap-4 md:grid-cols-3">
                         @forelse ($savedTips as $savedTip)
                             <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-[#ead8bd]/40 p-5">
@@ -145,6 +156,7 @@
                     </div>
                 </div>
 
+<!--my reviews-->
                 <div x-data="{ page: 0, totalPages: {{ max(1, (int) ceil(count($reviews) / 3)) }} }">
                     <div class="flex items-center justify-between gap-4">
                         <h2 class="text-2xl font-semibold text-slate-900">My reviews</h2>
@@ -157,6 +169,7 @@
                             @endif
                         </div>
                     </div>
+
                     <div class="mt-4 grid gap-4 md:grid-cols-2">
                         @forelse ($reviews as $review)
                                 <article x-show="{{ $loop->index }} >= page * 3 && {{ $loop->index }} < (page + 1) * 3" x-cloak class="rounded-2xl border border-rose-100 bg-white/60 p-5">

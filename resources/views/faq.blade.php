@@ -1,4 +1,6 @@
 <x-site-layout>
+
+<!--blok1-->
     <section class="bg-gradient-to-br from-[#d8b28c] via-[#ead8bd] to-[#f7efe3] px-6 py-16 sm:px-10">
         <div class="mx-auto flex max-w-6xl flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
@@ -8,11 +10,16 @@
             </div>
             @auth
                 @if (Auth::user()->is_admin)
-                    <a href="{{ route('admin.faqs.index') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-rose-600">Manage FAQs</a>
+                    <div class="flex flex-wrap gap-3">
+                        <a href="{{ route('admin.categories.create') }}" class="inline-flex shrink-0 rounded-full border border-slate-900 px-6 py-3 text-sm font-semibold text-slate-900 hover:bg-white">Add category</a>
+                        <a href="{{ route('admin.faqs.index') }}" class="inline-flex shrink-0 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white hover:bg-rose-600">Manage FAQs</a>
+                    </div>
                 @endif
             @endauth
         </div>
     </section>
+
+<!--blok2-->
     <section class="mx-auto max-w-4xl space-y-10 px-6 py-16 sm:px-10">
         @foreach ($categories as $category)
             <div>

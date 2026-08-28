@@ -1,4 +1,6 @@
 <x-site-layout>
+
+<!--blok1-->
     <section class="bg-gradient-to-br from-pink-50 via-white to-rose-50 px-6 py-16 sm:px-10">
         <div class="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[1.1fr_0.9fr] lg:items-center">
             <div class="space-y-6">
@@ -24,6 +26,7 @@
         </div>
     </section>
 
+<!--blok2-->
     <section class="border-y border-rose-100 bg-[#ead8bd]/40 px-6 py-14 sm:px-10">
         <div class="mx-auto max-w-6xl">
             <div class="max-w-xl">
@@ -50,6 +53,7 @@
         </div>
     </section>
 
+<!--blok3-->
     <section class="border-b border-rose-100 bg-[#fff8ee] px-6 py-16 sm:px-10">
         <div class="mx-auto max-w-6xl space-y-8">
             <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
@@ -63,20 +67,20 @@
                 @foreach ($tips as $tip)
                     <article class="rounded-2xl border border-rose-100 bg-rose-100/40 p-6">
                         <p class="text-2xl text-rose-400">✦</p>
-                        <h3 class="mt-4 text-lg font-semibold text-slate-900">{{ $tip['title'] }}</h3>
-                        <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip['text'] }}</p>
+                        <h3 class="mt-4 text-lg font-semibold text-slate-900">{{ $tip->title }}</h3>
+                        <p class="mt-3 text-sm leading-6 text-slate-600">{{ $tip->content }}</p>
                         <div class="mt-5 flex items-center justify-between gap-4">
                             <p class="text-xs font-semibold uppercase tracking-wider text-rose-500">
                                 Shared by
-                                @if ($tip['profile_id'])
-                                    <a href="{{ route('profile.show', ['user' => $tip['profile_id']]) }}" class="hover:text-rose-800 hover:underline">{{ $tip['author'] }}</a>
+                                @if ($tip->user_id)
+                                    <a href="{{ route('profile.show', ['user' => $tip->user_id ]) }}" class="hover:text-rose-800 hover:underline">{{ $tip->user->name }}</a>
                                 @else
-                                    {{ $tip['author'] }}
+                                    {{ $tip->user?->name ?? 'Anonymous' }}
                                 @endif
                             </p>
                             <form method="POST" action="{{ route('tips.favorite') }}">
                                 @csrf
-                                <input type="hidden" name="tip_key" value="{{ $tip['key'] }}">
+                                <input type="hidden" name="tip_key" value="tip-{{ $tip->id }}">
                                 <button type="submit" class="text-2xl text-rose-500 transition hover:text-rose-700" aria-label="Save tip">
                                     {{ in_array($tip['key'], $favoriteTips, true) ? '♥' : '♡' }}
                                 </button>
@@ -88,6 +92,7 @@
         </div>
     </section>
 
+<!--blok4-->
     <section x-data="{ selectedProduct: null }" class="mx-auto max-w-6xl space-y-8 px-6 py-16 sm:px-10">
         <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <div>
@@ -129,6 +134,7 @@
             @endforeach
         </div>
 
+<!--details product-->
         <div x-show="selectedProduct" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 px-6 py-8" x-on:click.self="selectedProduct = null">
             <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-[#fff8ee] p-6 shadow-2xl sm:p-10">
                 <div class="flex items-start justify-between gap-6">

@@ -1,4 +1,6 @@
 <x-site-layout>
+
+<!--blok1-->
     <section class="mx-auto max-w-4xl px-6 py-16 sm:px-10">
         <div class="overflow-hidden rounded-3xl border border-rose-100 bg-[#fff8ee] shadow-sm">
             <div class="bg-gradient-to-br from-[#d8b28c] via-[#ead8bd] to-[#f7efe3] px-8 py-10 sm:px-12">
@@ -17,6 +19,8 @@
                     </div>
                 </div>
             </div>
+
+<!--blok2-->
             <div class="space-y-6 px-8 py-10 sm:px-12">
                 <div>
                     <h2 class="text-2xl font-semibold text-slate-900">About me</h2>
@@ -28,6 +32,7 @@
                         <p class="mt-2 text-slate-600">{{ $user->birthday->format('F j, Y') }}</p>
                     </div>
                 @endif
+
                 <div class="grid gap-8 border-t border-rose-100 pt-6 lg:grid-cols-2">
                     <div>
                         <h2 class="text-2xl font-semibold text-slate-900">Reviews</h2>
@@ -45,6 +50,7 @@
                             @endforelse
                         </div>
                     </div>
+                    
                     <div>
                         <h2 class="text-2xl font-semibold text-slate-900">Beauty tips</h2>
                         <div class="mt-4 space-y-4">

@@ -1,4 +1,6 @@
 <x-guest-layout>
+
+<!--blok1-->
     <div class="grid min-h-[42rem] items-center gap-10 md:grid-cols-2">
         <div class="flex flex-col justify-between p-8 text-slate-900 sm:p-12">
             <div>
@@ -14,6 +16,7 @@
             <p class="mt-12 text-sm text-slate-700">Curated with care for beauty lovers.</p>
         </div>
 
+<!--blok2-->
         <div class="flex flex-col justify-center rounded-3xl border border-rose-100 bg-[#fff8ee] px-6 py-10 shadow-xl shadow-slate-400/20 sm:px-12">
             <div class="mb-8 space-y-2">
                 <div class="h-1 w-12 rounded-full bg-rose-200"></div>

@@ -34,15 +34,7 @@ class WelcomeController extends Controller
 
         $tips = Tip::latest()
             ->take(3)
-            ->get()
-            ->map(fn (Tip $tip): array => [
-                'key' => 'tip-'.$tip->id,
-                'profile_id' => $tip->user_id,
-                'title' => $tip->title,
-                'text' => $tip->content,
-                'author' => $tip->user->name,
-            ])
-            ->all();
+            ->get();
 
         if ($tips === []) {
             $tips = [

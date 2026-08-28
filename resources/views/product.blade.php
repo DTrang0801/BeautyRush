@@ -1,4 +1,6 @@
 <x-site-layout>
+
+<!--blok1-->
     <section class="bg-gradient-to-br from-[#d8b28c] via-[#ead8bd] to-[#f7efe3] px-6 py-16 text-slate-900 sm:px-10">
         <div class="mx-auto max-w-6xl space-y-4">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-rose-300">The full edit</p>
@@ -7,6 +9,7 @@
         </div>
     </section>
 
+<!--blok2-->
     <main x-data="{ selectedProduct: null }" class="mx-auto max-w-6xl px-6 py-16 sm:px-10">
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             @foreach ($products as $product)
@@ -37,6 +40,7 @@
             @endforeach
         </div>
 
+<!--details product-->
         <div x-show="selectedProduct" x-cloak class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 px-6 py-8" x-on:click.self="selectedProduct = null">
             <div class="max-h-[90vh] w-full max-w-2xl overflow-y-auto rounded-3xl bg-[#fff8ee] p-6 shadow-2xl sm:p-10">
                 <div class="flex items-start justify-between gap-6">
@@ -46,7 +50,7 @@
                     </div>
                     <button type="button" x-on:click="selectedProduct = null" class="text-2xl text-slate-400 hover:text-slate-700" aria-label="Close product details">×</button>
                 </div>
-
+            
                 <div class="mt-8 grid gap-6 sm:grid-cols-2">
                     <div class="rounded-2xl bg-rose-100/50 p-5">
                         <p class="text-sm font-semibold text-rose-600">About this product</p>
